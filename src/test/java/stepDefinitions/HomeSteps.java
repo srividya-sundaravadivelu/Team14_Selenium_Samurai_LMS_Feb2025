@@ -71,5 +71,10 @@ public class HomeSteps {
 	public void admin_should_see_logout_in_the_5th_place() {
 		Assert.assertEquals(homePage.getNavItemPosition("logout"), 5);
 	}
+	
+	@Then("Admin should see piechart")
+	public void admin_should_see_piechart() {
+		Assert.assertTrue(homePage.isPieChartVisible());
+	}
 
 }

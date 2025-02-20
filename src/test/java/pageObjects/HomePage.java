@@ -32,6 +32,9 @@ public class HomePage extends BasePage {
 
 	@FindBy(xpath = "//mat-toolbar//div")
 	private WebElement navBar;
+	
+	@FindBy(tagName = "app-doughnutchart")
+	private WebElement pieChart;
 
 	public String getPageTitle() {
 		return WebDriverWaitUtility.waitForElementToBeVisible(titleElement).getText();
@@ -127,6 +130,14 @@ public class HomePage extends BasePage {
 
 		}
 		return -1; // Return -1 if item is not found
+	}
+	
+	public boolean isPieChartVisible() {
+		if (WebDriverWaitUtility.waitForElementToBeVisible(pieChart).isDisplayed()) {
+		    return true;
+		} else {
+		    return false;
+		}
 	}
 
 }

@@ -64,12 +64,12 @@ Feature: Home Page
 		When Admin enter valid data from excel row "1"
 		Then Admin should see logout in the 5th place
 		
-#@homePage-11
-#	Scenario: verify pie-chart presence
-#		Given Admin is on login Page
-#		When Admin enter valid data in all field and clicks login button	
-#		Then Admin should see piechart
-#		
+@homePage-11
+	Scenario: verify pie-chart presence
+		Given Admin is on login Page
+		When Admin enter valid data from excel row "1"
+		Then Admin should see piechart
+		
 #@homePage-12
 #	Scenario: Verify user details
 #		Given Admin is on login Page
