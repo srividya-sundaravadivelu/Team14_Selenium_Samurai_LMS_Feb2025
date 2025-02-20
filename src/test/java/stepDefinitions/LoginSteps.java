@@ -37,5 +37,23 @@ public class LoginSteps {
 		// TODO: Add more assertions as required.
 		Assert.assertEquals(loginPage.getCurrentUrl(), ConfigReader.getLoginUrl());
 	}
+	
+	// Start of TODO - Change this after Login module is ready
+	
+	@Given("Admin is on login Page")
+    public void admin_is_on_login_page() {
+		loginPage.navigateToPage(ConfigReader.getLoginUrl());
+    	LogHelper.info("Current page is " + loginPage.getCurrentUrl());
+    }
+
+    @When("Admin enter valid data in all field and clicks login button")
+    public void admin_enters_valid_data_and_clicks_login() {
+        loginPage.enterUsername("sdetnumpyninja@gmail.com");
+        loginPage.enterPassword("Feb@2025");
+        loginPage.selectRole("Admin");
+        loginPage.clickLoginButton();
+    }
+    
+    // End of TODO - Change this after Login module is ready
 
 }

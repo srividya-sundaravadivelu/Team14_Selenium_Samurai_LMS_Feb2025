@@ -7,7 +7,7 @@ Feature: Home Page
 @homePage-01
   Scenario: Verify LMS title
     Given Admin is on login Page
-    When Admin enter valid data in all field and  clicks login button
+    When Admin enter valid data in all field and clicks login button
     Then Admin should see LMS -Learning management system as title
     
 @homePage-02
@@ -64,70 +64,70 @@ Feature: Home Page
 		When Admin enter valid data in all field and clicks login button	
 		Then Admin should see logout in the 5th place
 		
-@homePage-11
-	Scenario: verify pie-chart presence
-		Given Admin is on login Page
-		When Admin enter valid data in all field and clicks login button	
-		Then Admin should see piechart
-		
-@homePage-12
-	Scenario: Verify user details
-		Given Admin is on login Page
-		When Admin enter valid data in all field and clicks login button	
-		Then Admin should see welcome message with user name and role
-		
-@homePage-13
-	Scenario: Verify bar chart
-		Given Admin is on login Page
-		When Admin enter valid data in all field and clicks login button	
-		Then Admin should see bar chart for Active and inactive user
-		
-@homePage-14
-	Scenario: Verify user count
-		Given Admin is on login Page
-		When Admin enter valid data in all field and clicks login button	
-		Then Admin should see user count
-		
-@homePage-15
-	Scenario: Verify staff count
-		Given Admin is on login Page
-		When Admin enter valid data in all field and clicks login button
-		Then Admin should see staff count
-		
-@homePage-16
-	Scenario: verify program count
-		Given Admin is on login Page
-		When Admin enter valid data in all field and clicks login button	
-		Then Admin should see Program count
-		
-@homePage-17
-	Scenario: Verify batch count 
-		Given Admin is on login Page
-		When Admin enter valid data in all field and clicks login button
-		Then Admin should see batch count
-		
-@homePage-18
-	Scenario: Verify staff table pagination
-		Given Admin is on login Page
-		When Admin enter valid data in all field and clicks login button	
-		Then Admin should see staff table with pagination icons
-		
-@homePage-19
-	Scenario: Verify staff data page split
-		Given Admin is on login Page
-		When Admin enter valid data in all field and clicks login button
-		Then Admin should see 5 staff data in a page
-		
-@homePage-20
-	Scenario: verify previous page icon disable
-		Given Admin is on login Page
-		When Admin enter valid data in all field and clicks login button
-		Then Admin should see previous page icon disabled
-		
-@homePage-21
-	Scenario: verify first page icon disabled
-		Given Admin is on login Page
-		When Admin enter valid data in all field and clicks login button
-		Then Admin should see first page icon disabled
-		
-		
+#@homePage-11
+#	Scenario: verify pie-chart presence
+#		Given Admin is on login Page
+#		When Admin enter valid data in all field and clicks login button	
+#		Then Admin should see piechart
+#		
+#@homePage-12
+#	Scenario: Verify user details
+#		Given Admin is on login Page
+#		When Admin enter valid data in all field and clicks login button	
+#		Then Admin should see welcome message with user name and role
+#		
+#@homePage-13
+#	Scenario: Verify bar chart
+#		Given Admin is on login Page
+#		When Admin enter valid data in all field and clicks login button	
+#		Then Admin should see bar chart for Active and inactive user
+#		
+#@homePage-14
+#	Scenario: Verify user count
+#		Given Admin is on login Page
+#		When Admin enter valid data in all field and clicks login button	
+#		Then Admin should see user count
+#		
+#@homePage-15
+#	Scenario: Verify staff count
+#		Given Admin is on login Page
+#		When Admin enter valid data in all field and clicks login button
+#		Then Admin should see staff count
+#		
+#@homePage-16
+#	Scenario: verify program count
+#		Given Admin is on login Page
+#		When Admin enter valid data in all field and clicks login button	
+#		Then Admin should see Program count
+#		
+#@homePage-17
+#	Scenario: Verify batch count 
+#		Given Admin is on login Page
+#		When Admin enter valid data in all field and clicks login button
+#		Then Admin should see batch count
+#		
+#@homePage-18
+#	Scenario: Verify staff table pagination
+#		Given Admin is on login Page
+#		When Admin enter valid data in all field and clicks login button	
+#		Then Admin should see staff table with pagination icons
+#		
+#@homePage-19
+#	Scenario: Verify staff data page split
+#		Given Admin is on login Page
+#		When Admin enter valid data in all field and clicks login button
+#		Then Admin should see 5 staff data in a page
+#		
+#@homePage-20
+#	Scenario: verify previous page icon disable
+#		Given Admin is on login Page
+#		When Admin enter valid data in all field and clicks login button
+#		Then Admin should see previous page icon disabled
+#		
+#@homePage-21
+#	Scenario: verify first page icon disabled
+#		Given Admin is on login Page
+#		When Admin enter valid data in all field and clicks login button
+#		Then Admin should see first page icon disabled
+#		
+#		

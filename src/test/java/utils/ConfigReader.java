@@ -56,5 +56,7 @@ public class ConfigReader {
 		return Boolean.parseBoolean(properties.getProperty("browser.edge.headless", "false"));
 	}
 	
-	
+	public static String getHomePageTitle() {
+		return properties.getProperty("home.title");
+	}
 }
