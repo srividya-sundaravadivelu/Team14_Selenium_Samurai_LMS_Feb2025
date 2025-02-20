@@ -23,9 +23,6 @@ public class LoginPage extends BasePage {
 	@FindBy(xpath = "//*[@id=\"mat-select-value-1\"]/span")
 	private WebElement role;
 
-	@FindBy(id = "mat-select-0")  
-    private WebElement roleDropdown;
-
 	@FindBy(id = "login")
 	private WebElement login;
 	
@@ -40,9 +37,9 @@ public class LoginPage extends BasePage {
 		passwordInput.sendKeys(password);
 	}
 
-	public void selectRole(String role1) {
+	public void selectRole(String roleName) {
 		WebDriverWaitUtility.waitForElementToBeClickable(role).click();
-		WebElement roleOption = driver.findElement(By.xpath("//mat-option[span[text()[contains(.,'Admin')]]]"));
+		WebElement roleOption = driver.findElement(By.xpath("//mat-option[span[text()[contains(.," + roleName + ")]]]"));
 		WebDriverWaitUtility.waitForElementToBeClickable(roleOption).click();
 	}
 
