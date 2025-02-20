@@ -19,7 +19,7 @@ public class HomeSteps {
 		this.testContext = testContext;
 		this.homePage = testContext.getHomePage();
 	}
-
+	
 	@Then("Admin should see LMS -Learning management system as title")
 	public void admin_should_see_correct_title() {
 		LogHelper.info("The Current title is:" + homePage.getPageTitle());
