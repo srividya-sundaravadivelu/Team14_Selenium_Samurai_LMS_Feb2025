@@ -1,5 +1,8 @@
 package stepDefinitions;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import driver.TestContext;
@@ -9,12 +12,19 @@ import io.cucumber.java.en.When;
 
 import pageObjects.*;
 import utils.ConfigReader;
+import utils.DataReader;
 import utils.LogHelper;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class LoginSteps {
 
 	TestContext testContext;
 	LoginPage loginPage;
+	List<HashMap<String, String>> datamap; // Data driven
+
+
 
 	public LoginSteps(TestContext testContext) {
 		this.testContext = testContext;
@@ -37,5 +47,39 @@ public class LoginSteps {
 		// TODO: Add more assertions as required.
 		Assert.assertEquals(loginPage.getCurrentUrl(), ConfigReader.getLoginUrl());
 	}
+	@Given("Admin is on login Page")
+	public void admin_is_on_login_page() {
+    	loginPage.navigateToPage(ConfigReader.getLoginUrl());
+		LogHelper.info(loginPage.getCurrentUrl());
+	}
 
+	@When("Admin enter valid data from excel row {string}")
+	public void admin_enter_valid_data_from_excel_row(String rows) throws InterruptedException {
+		LogHelper.info("entering username and password");
+		datamap = DataReader.data(System.getProperty("user.dir") + "\\testData\\ExcelData.xlsx", "LoginPage");
+		LogHelper.info("user fills data from excel");
+		int index = Integer.parseInt(rows) - 1;
+
+		// Get action for browser elements, to perform action on them
+		Actions action = new Actions(testContext.getdriver());
+
+		// Type username
+		action.moveToElement(loginPage.userNameInput).click().sendKeys(datamap.get(index).get("Username")).build().perform();
+		// Type password
+		action.moveToElement(loginPage.passwordInput).click().sendKeys(datamap.get(index).get("Password")).build().perform();
+		// Select role
+
+		action.moveToElement(loginPage.role).click().build().perform();
+
+		testContext.getdriver().findElement(By.xpath("//mat-option[span[text()[contains(.,'Admin')]]]")).click();
+
+		loginPage.clickLogin();
+		Thread.sleep(2000);
+	}
+
+	@Then("Admin should land on home page")
+	public void admin_should_land_on_home_page() {
+		LogHelper.info("Admin is on Home page");
+		Assert.assertEquals(loginPage.getCurrentUrl(), ConfigReader.getBaseUrl());
+	}
 }
