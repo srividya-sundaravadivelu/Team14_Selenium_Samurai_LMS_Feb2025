@@ -14,7 +14,7 @@ import utils.LogHelper;
 
 public class TestContext {
 
-	static WebDriver driver;
+	WebDriver driver;	
 	private LoginPage loginPage;
 	
 
@@ -25,9 +25,9 @@ public class TestContext {
 		switch (browser.toLowerCase()) {
 		case "chrome":			
 			ChromeOptions chromeOptions = new ChromeOptions();
-//			if (ConfigReader.isChromeHeadless())
-//				chromeOptions.addArguments("--headless");
-			if(driver == null) driver= new ChromeDriver(chromeOptions);
+			if (ConfigReader.isChromeHeadless())
+				chromeOptions.addArguments("--headless");
+			driver = new ChromeDriver(chromeOptions);
 			LogHelper.info("Chrome Driver is created");
 			break;
 		case "firefox":			
