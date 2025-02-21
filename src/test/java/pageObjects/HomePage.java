@@ -32,9 +32,42 @@ public class HomePage extends BasePage {
 
 	@FindBy(xpath = "//mat-toolbar//div")
 	private WebElement navBar;
-	
+
 	@FindBy(tagName = "app-doughnutchart")
 	private WebElement pieChart;
+
+	@FindBy(xpath = "//app-admindata //div[contains(@class,'bottom')]")
+	private WebElement roleNameDiv;
+
+	@FindBy(xpath = "//app-admindata //strong")
+	private WebElement welcomeMessage;
+
+	@FindBy(xpath = "//mat-card //canvas[contains(@class,'chartjs-render-monitor')]")
+	private WebElement barChart;
+
+	@FindBy(xpath = "//div[@class='bottom' and text()='User']/preceding-sibling::div[@class='top']")
+	private WebElement userCountElement;
+
+	@FindBy(xpath = "//div[@class='bottom' and text()='Staff']/preceding-sibling::div[@class='top']")
+	private WebElement staffCountElement;
+
+	@FindBy(xpath = "//div[@class='bottom' and text()='Batches']/preceding-sibling::div[@class='top']")
+	private WebElement batchCountElement;
+
+	@FindBy(xpath = "//div[@class='bottom' and text()='Programs']/preceding-sibling::div[@class='top']")
+	private WebElement programCountElement;
+	
+	@FindBy(xpath = "//app-staffdata //mat-table")
+	private WebElement staffTable;
+	
+	@FindBy(xpath = "//app-staffdata //mat-paginator")
+	private WebElement staffTablePagination;
+	
+	@FindBy(xpath = "//button[contains(@class,'mat-paginator-navigation-first')]")
+	private WebElement firstPageButton;
+			
+	@FindBy(xpath = "//button[contains(@class,'mat-paginator-navigation-previous')]")
+	private WebElement previousPageButton;
 
 	public String getPageTitle() {
 		return WebDriverWaitUtility.waitForElementToBeVisible(titleElement).getText();
@@ -48,7 +81,6 @@ public class HomePage extends BasePage {
 
 		return (x <= leftAlignmentThreshold && y <= leftAlignmentThreshold);
 	}
-
 
 	public boolean hasNavBarSpellingMistakes() throws IOException {
 		Boolean hasSpellingMistake = false;
@@ -131,13 +163,106 @@ public class HomePage extends BasePage {
 		}
 		return -1; // Return -1 if item is not found
 	}
-	
+
 	public boolean isPieChartVisible() {
 		if (WebDriverWaitUtility.waitForElementToBeVisible(pieChart).isDisplayed()) {
-		    return true;
+			return true;
 		} else {
-		    return false;
+			LogHelper.error("PieChart is not visible");
+			return false;
 		}
 	}
+
+	public String getWecomeMessage() {
+		return WebDriverWaitUtility.waitForElementToBeVisible(welcomeMessage).getText().trim();
+	}
+
+	public String getRoleName() {
+		return WebDriverWaitUtility.waitForElementToBeVisible(roleNameDiv).getText().trim();
+	}
+
+	public boolean isBarChartVisible() {
+		if (WebDriverWaitUtility.waitForElementToBeVisible(barChart).isDisplayed()) {
+			return true;
+		} else {
+			LogHelper.error("Barchart is not visible");
+			return false;
+		}
+	}
+
+	public int getUserCount() {
+		userCountElement = WebDriverWaitUtility.waitForElementToBeVisible(userCountElement);
+		int userCount;
+		try {
+			userCount = Integer.parseInt(userCountElement.getText());
+		} catch (NumberFormatException e) {
+			throw new AssertionError("Displayed user count is not a valid integer");
+		}
+		return userCount;
+	}
+
+	public int getStaffCount() {
+		staffCountElement = WebDriverWaitUtility.waitForElementToBeVisible(staffCountElement);
+		int staffCount;
+		try {
+			staffCount = Integer.parseInt(staffCountElement.getText());
+		} catch (NumberFormatException e) {
+			throw new AssertionError("Displayed staff count is not a valid integer");
+		}
+		return staffCount;
+	}
+
+	public int getProgramCount() {
+		programCountElement = WebDriverWaitUtility.waitForElementToBeVisible(programCountElement);
+		int programCount;
+		try {
+			programCount = Integer.parseInt(programCountElement.getText());
+		} catch (NumberFormatException e) {
+			throw new AssertionError("Displayed program count is not a valid integer");
+		}
+		return programCount;
+	}
+
+	public int getBatchCount() {
+		batchCountElement = WebDriverWaitUtility.waitForElementToBeVisible(batchCountElement);
+		int batchCount;
+		try {
+			batchCount = Integer.parseInt(batchCountElement.getText());
+		} catch (NumberFormatException e) {
+			throw new AssertionError("Displayed batch count is not a valid integer");			
+		}
+		return batchCount;
+	}
+	
+	public boolean isStaffTableVisibleWithPagination() {
+		boolean isStaffTableVisible = WebDriverWaitUtility.waitForElementToBeVisible(staffTable).isDisplayed();
+		if (!isStaffTableVisible)
+			LogHelper.error("Staff table is not visible");
+		
+		boolean isStaffPaginationVisible =  WebDriverWaitUtility.waitForElementToBeVisible(staffTablePagination).isDisplayed();
+		if (!isStaffPaginationVisible)
+			LogHelper.error("Staff table pagination is not visible");
+		
+		return isStaffTableVisible && isStaffPaginationVisible;
+
+	}
+	
+	public int getStaffTablePageSize()
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		List<WebElement> staffRows = wait
+				.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//mat-table //mat-row")));
+		
+		return staffRows.size();
+	}
+	
+	public boolean isPreviousPageButtonEnabled() {
+		return WebDriverWaitUtility.waitForElementToBeVisible(previousPageButton).isEnabled();
+	}
+	
+	public boolean isFirstPageButtonEnabled() {
+		return WebDriverWaitUtility.waitForElementToBeVisible(firstPageButton).isEnabled();
+	}
+	
 
 }

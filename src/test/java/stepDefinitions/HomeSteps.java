@@ -1,6 +1,8 @@
 package stepDefinitions;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 
 import org.testng.Assert;
 
@@ -8,12 +10,16 @@ import driver.TestContext;
 import io.cucumber.java.en.Then;
 import pageObjects.HomePage;
 import utils.ConfigReader;
+import utils.DataReader;
 import utils.LogHelper;
 
 public class HomeSteps {
 
 	TestContext testContext;
 	HomePage homePage;
+	private static int VALID_LOGIN_ROW_INDEX = 0;
+	private static String ADMIN_ROLE = "ADMIN";
+	private static int PAGE_SIZE = 5;
 
 	public HomeSteps(TestContext testContext) {
 		this.testContext = testContext;
@@ -75,6 +81,61 @@ public class HomeSteps {
 	@Then("Admin should see piechart")
 	public void admin_should_see_piechart() {
 		Assert.assertTrue(homePage.isPieChartVisible());
+	}
+	
+	@Then("Admin should see welcome message with user name and role")
+	public void admin_should_see_welcome_message_with_user_name_and_role() {
+		List<HashMap<String, String>> datamap = DataReader.data(System.getProperty("user.dir") + "\\testData\\ExcelData.xlsx", "LoginPage");
+		datamap = DataReader.data(System.getProperty("user.dir") + "\\testData\\ExcelData.xlsx", "LoginPage");
+		String userName = datamap.get(VALID_LOGIN_ROW_INDEX).get("Username");
+		
+		Assert.assertEquals(homePage.getWecomeMessage(),"Welcome "+ userName); 
+		Assert.assertEquals(homePage.getRoleName(), ADMIN_ROLE);
+	}
+	
+	@Then("Admin should see bar chart for Active and inactive user")
+	public void admin_should_see_bar_chart_for_active_and_inactive_user() {
+		Assert.assertTrue(homePage.isBarChartVisible());
+	}
+	
+	@Then("Admin should see user count")
+	public void admin_should_see_user_count() {
+		Assert.assertTrue(homePage.getUserCount() >= 0);
+	}
+	
+	@Then("Admin should see staff count")
+	public void admin_should_see_staff_count() {
+		Assert.assertTrue(homePage.getStaffCount() >= 0);
+	}
+	
+	@Then("Admin should see Program count")
+	public void admin_should_see_program_count() {
+		Assert.assertTrue(homePage.getProgramCount() >= 0);
+	}
+	
+	@Then("Admin should see batch count")
+	public void admin_should_see_batch_count() {
+		Assert.assertTrue(homePage.getBatchCount() >= 0);
+	}
+	
+	@Then("Admin should see staff table with pagination icons")
+	public void admin_should_see_staff_table_with_pagination_icons() {
+		Assert.assertTrue(homePage.isStaffTableVisibleWithPagination());
+	}
+	
+	@Then("Admin should see 5 staff data in a page")
+	public void admin_should_see_5_staff_data_in_a_page() {
+		Assert.assertEquals(homePage.getStaffTablePageSize(), PAGE_SIZE);
+	}
+	
+	@Then("Admin should see previous page icon disabled")
+	public void admin_should_see_previous_page_icon_disabled() {
+		Assert.assertFalse(homePage.isPreviousPageButtonEnabled());
+	}
+	
+	@Then("Admin should see first page icon disabled")
+	public void admin_should_see_first_page_icon_disabled() {
+		Assert.assertFalse(homePage.isFirstPageButtonEnabled());
 	}
 
 }
