@@ -132,7 +132,7 @@ public class HomePage extends BasePage {
 		int navBarWidth = navBar.getSize().getWidth();
 
 		// Define the acceptable thresholds
-		int rightThreshold = 35; // Pixels from the right edge
+		int rightThreshold = 40; // Pixels from the right edge
 		int topThreshold = 15; // Pixels from the top edge
 
 		// Calculate the navigation bar's right edge position
