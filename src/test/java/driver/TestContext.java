@@ -16,7 +16,7 @@ public class TestContext {
 
 	WebDriver driver;	
 	private LoginPage loginPage;
-	
+	private ClassPage classPage;
 
 	public void setDriver(String browser) {
 		LogHelper.info("Browser value inside SetDriver method in TestContext:" + browser);
@@ -71,7 +71,11 @@ public class TestContext {
 			loginPage = new LoginPage(driver);
 		return loginPage;
 	}
-
+	public ClassPage getClassPage() {
+		if (classPage == null)
+			classPage = new ClassPage(driver);
+		return classPage;
+	}
 	
 
 }
