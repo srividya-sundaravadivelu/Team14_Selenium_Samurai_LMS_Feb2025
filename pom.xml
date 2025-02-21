@@ -83,20 +83,7 @@
 			<artifactId>testng</artifactId>
 			<version>7.10.2</version>
 			<scope>test</scope>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
-		<dependency>
-			<groupId>com.aventstack</groupId>
-			<artifactId>extentreports</artifactId>
-			<version>5.0.9</version>
-		</dependency>
-		<!--
-		https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber7-adapter -->
-		<dependency>
-			<groupId>tech.grasshopper</groupId>
-			<artifactId>extentreports-cucumber7-adapter</artifactId>
-			<version>1.10.1</version>
-		</dependency>
+		</dependency>		
 		<!--
 		https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber7-jvm -->
 		<dependency>
@@ -165,6 +152,13 @@
 		    <groupId>org.languagetool</groupId>
 		    <artifactId>language-en</artifactId>
 		    <version>6.4</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.aventstack/chaintest-cucumber-jvm -->
+		<dependency>
+		    <groupId>com.aventstack</groupId>
+		    <artifactId>chaintest-cucumber-jvm</artifactId>
+		    <version>1.0.11</version>
 		</dependency>
 
 	</dependencies>
