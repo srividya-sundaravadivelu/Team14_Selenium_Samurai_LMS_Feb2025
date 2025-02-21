@@ -24,6 +24,8 @@ public class LoginPage extends BasePage {
 
 	@FindBy(id = "login")
 	public WebElement login;
+	
+	
 
 	public void clickLogin(){
 		login.click();
