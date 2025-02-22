@@ -14,10 +14,11 @@ import utils.LogHelper;
 
 public class TestContext {
 
-	WebDriver driver;	
+	WebDriver driver;
 	private LoginPage loginPage;
+	private LogoutPage logoutpage;
 	private HomePage homePage;
-	
+
 
 	public void setDriver(String browser) {
 		LogHelper.info("Browser value inside SetDriver method in TestContext:" + browser);
@@ -72,13 +73,17 @@ public class TestContext {
 			loginPage = new LoginPage(driver);
 		return loginPage;
 	}
-	
+
 	public HomePage getHomePage() {
 		if (homePage == null)
 			homePage = new HomePage(driver);
 		return homePage;
 	}
 
-	
+	public LogoutPage getLogoutpage() {
+		if (logoutpage == null)
+			logoutpage = new LogoutPage(driver);
+		return logoutpage;
+	}
 
 }
