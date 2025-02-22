@@ -22,6 +22,7 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 		, tags = "@login or @homePage or @logout or @Batch or @addBatch" )
 
 
+
 public class TestRunner extends AbstractTestNGCucumberTests {
 	
 	//Important! Uncomment below for CrossBrowser & Parallel Testing
