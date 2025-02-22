@@ -38,6 +38,11 @@ public class WebDriverWaitUtility {
 	public static boolean waitForAlert() {
 		return wait.until(ExpectedConditions.alertIsPresent()) != null;
 	}
+	
+	public static void waitForTitle(WebDriver driver, String expectedTitle) {
+	    new WebDriverWait(driver, Duration.ofSeconds(10))
+	        .until(ExpectedConditions.titleIs(expectedTitle));
+	}
 
 }
 

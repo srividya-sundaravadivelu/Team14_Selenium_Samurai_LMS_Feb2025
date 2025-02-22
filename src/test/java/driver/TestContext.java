@@ -14,11 +14,18 @@ import utils.LogHelper;
 
 public class TestContext {
 
-	static WebDriver driver;
+	WebDriver driver;
 	private LoginPage loginPage;
 	private Program1Page programPage;
-	private HomePage homePage;
+
+	private BatchPage batchPage;
+	private addBatchPage addbatchPage;
 	
+
+	private LogoutPage logoutpage;
+	private HomePage homePage;
+
+
 
 	public void setDriver(String browser) {
 		LogHelper.info("Browser value inside SetDriver method in TestContext:" + browser);
@@ -27,9 +34,9 @@ public class TestContext {
 		switch (browser.toLowerCase()) {
 		case "chrome":			
 			ChromeOptions chromeOptions = new ChromeOptions();
-//			if (ConfigReader.isChromeHeadless())
-//				chromeOptions.addArguments("--headless");
-			if(driver == null) driver= new ChromeDriver(chromeOptions);
+			if (ConfigReader.isChromeHeadless())
+				chromeOptions.addArguments("--headless");
+			driver = new ChromeDriver(chromeOptions);
 			LogHelper.info("Chrome Driver is created");
 			break;
 		case "firefox":			
@@ -73,18 +80,34 @@ public class TestContext {
 			loginPage = new LoginPage(driver);
 		return loginPage;
 	}
-	public HomePage getHomePage() {
-		if (homePage == null)
-			homePage = new HomePage(driver);
-		return homePage;
-	}
-	
 	public Program1Page getProgramPage() {
 		if(programPage == null)
 			programPage = new Program1Page(driver);
 		return programPage;
 	}
 
-	
+
+	public BatchPage getBatchPage() {
+		if(batchPage == null)
+			batchPage = new BatchPage(driver);
+		return batchPage;
+	}
+	public addBatchPage getaddBatchPage() {
+		if(addbatchPage == null)
+			addbatchPage = new addBatchPage(driver);
+		return addbatchPage;
+	}
+
+	public HomePage getHomePage() {
+		if (homePage == null)
+			homePage = new HomePage(driver);
+		return homePage;
+	}
+
+	public LogoutPage getLogoutpage() {
+		if (logoutpage == null)
+			logoutpage = new LogoutPage(driver);
+		return logoutpage;
+	}
 
 }

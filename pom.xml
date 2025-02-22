@@ -3,37 +3,40 @@
   <groupId>LmsSeleniumCucumber</groupId>
   <artifactId>LmsSeleniumCucumber</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+ <properties>
+<maven.compiler.source>17</maven.compiler.source>
+<maven.compiler.target>17</maven.compiler.target>
+</properties>
   <build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.10.1</version>
-				<configuration>
-					<source>21</source>
-					<target>21</target>
-					<compilerArgs>
-						<arg>--add-exports</arg>
-						<arg>
-							jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
-					</compilerArgs>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M5</version>
-				<configuration>
-					<properties>
-						<dataproviderthreadcount>3</dataproviderthreadcount>
-						<parallel>all</parallel>
-						<threadcount>3</threadcount>
-					</properties>
-					<suiteXmlFiles>
-						<suiteXmlFile>testng.xml</suiteXmlFile>
-					</suiteXmlFiles>
-				</configuration>
-			</plugin>
+<groupId>org.apache.maven.plugins</groupId>
+<artifactId>maven-compiler-plugin</artifactId>
+<version>3.10.1</version>
+<configuration>
+<source>17</source>
+<target>17</target>
+<compilerArgs>
+<arg>--add-exports</arg>
+<arg> jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+</compilerArgs>
+</configuration>
+</plugin>
+<plugin>
+<artifactId>maven-surefire-plugin</artifactId>
+<version>3.1.2</version>
+<configuration>
+<properties>
+<dataproviderthreadcount>3</dataproviderthreadcount>
+<parallel>all</parallel>
+<threadcount>3</threadcount>
+</properties>
+<suiteXmlFiles>
+<suiteXmlFile>testng.xml</suiteXmlFile>
+</suiteXmlFiles>
+</configuration>
+</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -97,6 +100,13 @@
 			<artifactId>extentreports-cucumber7-adapter</artifactId>
 			<version>1.10.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/ru.yandex.qatools.ashot/ashot -->
+		<dependency>
+			<groupId>ru.yandex.qatools.ashot</groupId>
+			<artifactId>ashot</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+
 		<!--
 		https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber7-jvm -->
 		<dependency>
@@ -158,5 +168,21 @@
 			<artifactId>cucumber-picocontainer</artifactId>
 			<version>7.18.0</version>
 		</dependency>
+
+		<!--
+		https://mvnrepository.com/artifact/org.languagetool/language-en -->
+		<dependency>
+		    <groupId>org.languagetool</groupId>
+		    <artifactId>language-en</artifactId>
+		    <version>6.4</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.aventstack/chaintest-cucumber-jvm -->
+		<dependency>
+		    <groupId>com.aventstack</groupId>
+		    <artifactId>chaintest-cucumber-jvm</artifactId>
+		    <version>1.0.11</version>
+		</dependency>
+
 	</dependencies>
 </project>
