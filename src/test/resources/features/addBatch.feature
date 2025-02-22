@@ -1,3 +1,4 @@
+@addBatch
 Feature: Add New Batch
 
   Background: User is on base page

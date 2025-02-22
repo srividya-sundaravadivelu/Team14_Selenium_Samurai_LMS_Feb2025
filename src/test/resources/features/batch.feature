@@ -1,3 +1,4 @@
+@Batch
 Feature: Batch Page Navigation
 
   Background: User is on base page
