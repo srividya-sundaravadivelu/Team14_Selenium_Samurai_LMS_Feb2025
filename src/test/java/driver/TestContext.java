@@ -22,8 +22,14 @@ public class TestContext {
 	private LoginPage loginPage;
 	private Actions actions;
 	private ProgramDeletePage programdeletepage;
+
+	private BatchPage batchPage;
+	private addBatchPage addbatchPage;
+	
+
 	private LogoutPage logoutpage;
 	private HomePage homePage;
+
 
 
 	public void setDriver(String browser) {
@@ -78,6 +84,17 @@ public class TestContext {
 		if (loginPage == null)
 			loginPage = new LoginPage(driver);
 		return loginPage;
+	}
+	
+	public BatchPage getBatchPage() {
+		if(batchPage == null)
+			batchPage = new BatchPage(driver);
+		return batchPage;
+	}
+	public addBatchPage getaddBatchPage() {
+		if(addbatchPage == null)
+			addbatchPage = new addBatchPage(driver);
+		return addbatchPage;
 	}
 
 	
