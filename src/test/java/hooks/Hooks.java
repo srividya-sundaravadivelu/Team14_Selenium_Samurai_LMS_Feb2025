@@ -47,10 +47,10 @@ public class Hooks {
 		}
 	}
 
-//	@After
-//	public void tearDown() {
-//		LogHelper.info("Tearing down WebDriver...");
-//		testContext.quitDriver();
-//		LogHelper.info("Tear down WebDriver successful");
-//	}
+	@After
+	public void tearDown() {
+		LogHelper.info("Tearing down WebDriver...");
+		testContext.quitDriver();
+		LogHelper.info("Tear down WebDriver successful");
+	}
 }

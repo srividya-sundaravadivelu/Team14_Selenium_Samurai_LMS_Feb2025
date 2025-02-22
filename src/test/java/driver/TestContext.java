@@ -14,9 +14,9 @@ import utils.LogHelper;
 
 public class TestContext {
 
-	static WebDriver driver;
+	WebDriver driver;
 	private LoginPage loginPage;
-	
+	private LogoutPage logoutpage;
 
 	public void setDriver(String browser) {
 		LogHelper.info("Browser value inside SetDriver method in TestContext:" + browser);
@@ -27,7 +27,7 @@ public class TestContext {
 			ChromeOptions chromeOptions = new ChromeOptions();
 //			if (ConfigReader.isChromeHeadless())
 //				chromeOptions.addArguments("--headless");
-			if(driver == null) driver= new ChromeDriver(chromeOptions);
+			driver= new ChromeDriver(chromeOptions);
 			LogHelper.info("Chrome Driver is created");
 			break;
 		case "firefox":			
@@ -72,6 +72,10 @@ public class TestContext {
 		return loginPage;
 	}
 
-	
+	public LogoutPage getLogoutpage() {
+		if (logoutpage == null)
+			logoutpage = new LogoutPage(driver);
+		return logoutpage;
+	}
 
 }
