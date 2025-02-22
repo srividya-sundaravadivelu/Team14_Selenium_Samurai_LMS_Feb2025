@@ -2,7 +2,6 @@ package pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -11,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.ashot.comparison.ImageDiff;
 import ru.yandex.qatools.ashot.comparison.ImageDiffer;
 import utils.ConfigReader;
+import utils.WebDriverWaitUtility;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -18,8 +18,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-
-import utils.WebDriverWaitUtility;
 
 
 public class LoginPage extends BasePage {
@@ -40,32 +38,6 @@ public class LoginPage extends BasePage {
 	@FindBy(id = "login")
 	private WebElement login;
 
-
-	public void enterUsername(String username) {
-		userNameInput = WebDriverWaitUtility.waitForElementToBeClickable(userNameInput);
-		userNameInput.sendKeys(username);
-	}
-
-	public void enterPassword(String password) {
-		passwordInput = WebDriverWaitUtility.waitForElementToBeClickable(passwordInput);
-		passwordInput.sendKeys(password);
-	}
-
-	public void selectRole(String roleName) {
-		WebDriverWaitUtility.waitForElementToBeClickable(role).click();
-		WebElement roleOption = driver.findElement(By.xpath("//mat-option[span[text()[contains(.," + roleName + ")]]]"));
-		WebDriverWaitUtility.waitForElementToBeClickable(roleOption).click();
-	}
-    @FindBy(xpath = "//*[@id=\"mat-select-value-1\"]/span")
-    public WebElement role;
-
-    @FindBy(id = "login")
-    public WebElement login;
-
-	public void clickLogin(){
-		WebDriverWaitUtility.waitForElementToBeClickable(login).click();
-	}
-}
     @FindBy(xpath = "/html/body/app-root/app-login/div/div/img")
     public WebElement logoImage;
 
@@ -81,10 +53,25 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "/html/body/app-root/app-login/div/mat-card/mat-card-content/form")
     public WebElement inputField;
 
-    public void clickLogin() {
-        login.click();
+    public void enterUsername(String username) {
+        userNameInput = WebDriverWaitUtility.waitForElementToBeClickable(userNameInput);
+        userNameInput.sendKeys(username);
     }
 
+    public void enterPassword(String password) {
+        passwordInput = WebDriverWaitUtility.waitForElementToBeClickable(passwordInput);
+        passwordInput.sendKeys(password);
+    }
+
+    public void selectRole(String roleName) {
+        WebDriverWaitUtility.waitForElementToBeClickable(role).click();
+        WebElement roleOption = driver.findElement(By.xpath("//mat-option[span[text()[contains(.," + roleName + ")]]]"));
+        WebDriverWaitUtility.waitForElementToBeClickable(roleOption).click();
+    }
+
+    public void clickLogin(){
+        WebDriverWaitUtility.waitForElementToBeClickable(login).click();
+    }
     public String getUserNameInputText() {
         return userNameInput.getAttribute("data-placeholder");
     }

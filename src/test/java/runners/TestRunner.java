@@ -12,14 +12,14 @@ import org.testng.annotations.Parameters;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 
 //@RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources/features/logout.feature", // Path to feature files
+@CucumberOptions(features = "src/test/resources/features", // Path to feature files
 		glue = { "stepDefinitions", "hooks" }, // Path to step definitions package
 		plugin = { "pretty", "html:target/cucumber-reports.html", 
 				"json:target/cucumber-reports/cucumber.json",
 				"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
 				"com.aventstack.chaintest.plugins.ChainTestCucumberListener:" }, // For reporting
 		monochrome = true // For better console output 
-		, tags = "@homePage" )
+		, tags = "@login or @homePage or @logout" )
 
 
 public class TestRunner extends AbstractTestNGCucumberTests {
