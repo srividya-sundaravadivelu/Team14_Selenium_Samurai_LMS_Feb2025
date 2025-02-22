@@ -18,10 +18,13 @@ import utils.WebDriverWaitUtility;
 
 public class TestContext {
 
-	WebDriver driver;	
+	WebDriver driver;
 	private LoginPage loginPage;
 	private Actions actions;
 	private ProgramDeletePage programdeletepage;
+	private LogoutPage logoutpage;
+	private HomePage homePage;
+
 
 	public void setDriver(String browser) {
 		LogHelper.info("Browser value inside SetDriver method in TestContext:" + browser);
@@ -85,6 +88,17 @@ public class TestContext {
 		if (programdeletepage == null)
 			programdeletepage = new ProgramDeletePage(driver);
 		return programdeletepage;
+	}
+	public HomePage getHomePage() {
+		if (homePage == null)
+			homePage = new HomePage(driver);
+		return homePage;
+	}
+
+	public LogoutPage getLogoutpage() {
+		if (logoutpage == null)
+			logoutpage = new LogoutPage(driver);
+		return logoutpage;
 	}
 
 }
