@@ -17,6 +17,8 @@ public class TestContext {
 	WebDriver driver;	
 	private LoginPage loginPage;
 	private ClassPage classPage;
+	private AddNewClassPage addNewClassPage;
+	private AddClassPopUp addClassPopUp;
 
 	public void setDriver(String browser) {
 		LogHelper.info("Browser value inside SetDriver method in TestContext:" + browser);
@@ -76,6 +78,15 @@ public class TestContext {
 			classPage = new ClassPage(driver);
 		return classPage;
 	}
-	
+	public AddNewClassPage getAddNewClassPage() {
+		if (addNewClassPage == null)
+			addNewClassPage = new AddNewClassPage(driver);
+		return addNewClassPage;
+	}
+	public AddClassPopUp getAddClassPopUp() {
+		if (addClassPopUp == null)
+			addClassPopUp = new AddClassPopUp(driver);
+		return addClassPopUp;
+	}
 
 }

@@ -1,8 +1,6 @@
 package stepDefinitions;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
+
 import org.testng.Assert;
 
 import driver.TestContext;
@@ -12,7 +10,6 @@ import io.cucumber.java.en.When;
 
 import pageObjects.*;
 import utils.ConfigReader;
-import utils.DataReader;
 import utils.LogHelper;
 
 import java.util.HashMap;
@@ -21,13 +18,11 @@ import java.util.List;
 public class ClassSteps {
 
 	TestContext testContext;
-	LoginPage loginPage;
 	ClassPage classPage;
 	List<HashMap<String, String>> datamap; // Data driven
 
 	public ClassSteps(TestContext testContext) {
 		this.testContext = testContext;
-		this.loginPage = testContext.getLoginPage();
 		this.classPage = testContext.getClassPage();
 	}
 

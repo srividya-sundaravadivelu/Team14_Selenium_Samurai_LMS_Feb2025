@@ -14,4 +14,4 @@ Background: User is on base page
 
       Examples:
         | row_index |
-        |         1 |
+        |         2 |
