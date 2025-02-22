@@ -1,5 +1,7 @@
 package stepDefinitions;
 
+import org.testng.Assert;
+
 import driver.TestContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -80,6 +82,18 @@ public class LoginSteps {
         LogHelper.info(loginPage.getCurrentUrl());
     }
 
+	@When("Admin enter valid data from excel row {string}")
+	public void admin_enter_valid_data_from_excel_row(String rows) throws InterruptedException {
+		LogHelper.info("entering username and password");
+		datamap = DataReader.data(System.getProperty("user.dir") + "\\testData\\ExcelData.xlsx", "LoginPage");
+		LogHelper.info("user fills data from excel");
+		int index = Integer.parseInt(rows) - 1;
+
+		loginPage.enterUsername(datamap.get(index).get("Username"));
+        loginPage.enterPassword(datamap.get(index).get("Password"));
+        loginPage.selectRole("Admin");
+        loginPage.clickLogin();
+	}
     @When("Admin enter data from excel row {string}")
     public void admin_enter_data_from_excel_row(String rows) throws InterruptedException {
         LogHelper.info("entering username and password");

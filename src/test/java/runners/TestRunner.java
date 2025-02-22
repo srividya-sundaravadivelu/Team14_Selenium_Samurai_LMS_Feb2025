@@ -17,9 +17,9 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 		plugin = { "pretty", "html:target/cucumber-reports.html", 
 				"json:target/cucumber-reports/cucumber.json",
 				"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
-				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:" }, // For reporting
+				"com.aventstack.chaintest.plugins.ChainTestCucumberListener:" }, // For reporting
 		monochrome = true // For better console output 
-		, tags = "@login")
+		, tags = "@homePage" )
 
 
 public class TestRunner extends AbstractTestNGCucumberTests {
