@@ -8,15 +8,20 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import pageObjects.*;
 import utils.ConfigReader;
 import utils.LogHelper;
+import utils.WebDriverWaitUtility;
 
 public class TestContext {
 
 	WebDriver driver;	
 	private LoginPage loginPage;
-	
+	private Actions actions;
+	private ProgramDeletePage programdeletepage;
 
 	public void setDriver(String browser) {
 		LogHelper.info("Browser value inside SetDriver method in TestContext:" + browser);
@@ -73,5 +78,13 @@ public class TestContext {
 	}
 
 	
+	public Actions getActions() {
+		return actions;
+	}
+	public ProgramDeletePage getProgramDeletePage() {
+		if (programdeletepage == null)
+			programdeletepage = new ProgramDeletePage(driver);
+		return programdeletepage;
+	}
 
 }
