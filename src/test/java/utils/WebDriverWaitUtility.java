@@ -20,6 +20,10 @@ public class WebDriverWaitUtility {
 	public static WebElement waitForElementToBeVisible(WebElement element) {
 		return wait.until(ExpectedConditions.visibilityOf(element));
 	}
+	
+	public static boolean waitForElementToBeInvisible(WebElement element) {
+	    return wait.until(ExpectedConditions.invisibilityOf(element));
+	}
 
 	public static WebElement waitForElementToBeClickable(WebElement element) {
 		return wait.until(ExpectedConditions.elementToBeClickable(element));

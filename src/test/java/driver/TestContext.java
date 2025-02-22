@@ -16,6 +16,8 @@ public class TestContext {
 
 	static WebDriver driver;
 	private LoginPage loginPage;
+	private Program1Page programPage;
+	private HomePage homePage;
 	
 
 	public void setDriver(String browser) {
@@ -70,6 +72,17 @@ public class TestContext {
 		if (loginPage == null)
 			loginPage = new LoginPage(driver);
 		return loginPage;
+	}
+	public HomePage getHomePage() {
+		if (homePage == null)
+			homePage = new HomePage(driver);
+		return homePage;
+	}
+	
+	public Program1Page getProgramPage() {
+		if(programPage == null)
+			programPage = new Program1Page(driver);
+		return programPage;
 	}
 
 	
