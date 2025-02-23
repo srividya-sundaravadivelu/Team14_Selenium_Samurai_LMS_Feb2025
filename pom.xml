@@ -1,4 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>LmsSeleniumCucumber</groupId>
   <artifactId>LmsSeleniumCucumber</artifactId>
@@ -97,6 +97,13 @@
 			<artifactId>extentreports-cucumber7-adapter</artifactId>
 			<version>1.10.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/ru.yandex.qatools.ashot/ashot -->
+		<dependency>
+			<groupId>ru.yandex.qatools.ashot</groupId>
+			<artifactId>ashot</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+
 		<!--
 		https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber7-jvm -->
 		<dependency>
@@ -158,5 +165,21 @@
 			<artifactId>cucumber-picocontainer</artifactId>
 			<version>7.18.0</version>
 		</dependency>
+
+		<!--
+		https://mvnrepository.com/artifact/org.languagetool/language-en -->
+		<dependency>
+		    <groupId>org.languagetool</groupId>
+		    <artifactId>language-en</artifactId>
+		    <version>6.4</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.aventstack/chaintest-cucumber-jvm -->
+		<dependency>
+		    <groupId>com.aventstack</groupId>
+		    <artifactId>chaintest-cucumber-jvm</artifactId>
+		    <version>1.0.11</version>
+		</dependency>
+
 	</dependencies>
 </project>
