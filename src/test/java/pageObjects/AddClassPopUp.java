@@ -189,7 +189,7 @@ public class AddClassPopUp extends BasePage {
 			staffName.clear();
 			staffName.sendKeys(classDetails.get("StaffName"));
 			statusActive.click();
-			saveAddClass.click();
+			//saveAddClass.click();
 //			if (classDetails.get("Status").equals("Active")) {
 //				statusActive.click();
 //			} else {
