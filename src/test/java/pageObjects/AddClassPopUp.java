@@ -175,6 +175,32 @@ public class AddClassPopUp extends BasePage {
 			//noOfClassesTextBox.sendKeys("1");
 		}
 		
+		public void editClassDtetails(HashMap<String,String> classDetails) throws InterruptedException {
+			
+			try {
+				classDescription.click();
+				staffName.click();
+			} catch (Exception e) {
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();arguments[1].click();arguments[2].click();arguments[3].click();",
+						classDescription,staffName,statusActive,saveAddClass);
+			}
+			
+			classDescription.sendKeys(classDetails.get("ClassDescription"));
+			staffName.clear();
+			staffName.sendKeys(classDetails.get("StaffName"));
+			statusActive.click();
+			saveAddClass.click();
+//			if (classDetails.get("Status").equals("Active")) {
+//				statusActive.click();
+//			} else {
+//				statusInActive.click();
+//
+//			}
+//			saveAddClass.click();
+
+			//return classCreated.getText();
+		}
+		
 		
 		public boolean isBatchNameReqMsgVisible() {
 			return batchNameReq.isDisplayed();

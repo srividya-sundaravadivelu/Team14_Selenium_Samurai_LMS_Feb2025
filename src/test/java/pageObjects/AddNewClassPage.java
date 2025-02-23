@@ -36,7 +36,7 @@ public class AddNewClassPage extends BasePage {
 		return subMenuItem.getText();
 	}
 
-	public void addNewProgramClick() {
+	public void addNewClassClick() {
 
 		WebElement subMenuItem = WebDriverWaitUtility.waitForElementToBeClickable(addNewClass);
 		subMenuItem.click();

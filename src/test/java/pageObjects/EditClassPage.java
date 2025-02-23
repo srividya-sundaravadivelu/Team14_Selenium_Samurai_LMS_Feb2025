@@ -20,8 +20,10 @@ public class EditClassPage extends BasePage {
 	}
 	
 
-	@FindBy(xpath = "//tbody[@class = 'p-datatable-tbody']//button[@icon = 'pi pi-pencil']")
-	private List<WebElement> editBtnList;
+	@FindBy(xpath = "//tbody[@class = 'p-datatable-tbody']//button[@icon = 'pi pi-pencil']") private List<WebElement> editBtnList;
+	@FindBy(xpath="//span[contains(text(),'Class Details')]") private WebElement classDetails;
+	@FindBy(xpath = "//input[@placeholder='Select a Batch Name']") private WebElement batchNameDrpdwn;
+	@FindBy(xpath = "//input[@id='classTopic']") private WebElement classTopic;
 	
 	public List<WebElement> getEditbuttonList() {
 		List<WebElement> btns = WebDriverWaitUtility.waitForListOfElementsToBeVisible(editBtnList);
@@ -37,7 +39,6 @@ public class EditClassPage extends BasePage {
 		int number = new Random().nextInt(5);
 		// clicking one random edit button from editButton list
 		WebElement editBtn = getEditbuttonList().get(number);
-		System.out.println("clicking the edit btn..");
 		try {
 			editBtn.click();
 		} catch (Exception e) {
@@ -45,6 +46,20 @@ public class EditClassPage extends BasePage {
 		}
 
 	}
-
+	
+	public boolean isEditPopUpDisplayed() {
+		WebElement editPopUp = WebDriverWaitUtility.waitForElementToBeVisible(classDetails);
+		return editPopUp.isDisplayed();
+	}
+	public boolean isBatchNameDrpdwnDisabled() {
+		WebElement batchList = WebDriverWaitUtility.waitForElementToBeVisible(batchNameDrpdwn);
+		return batchList.isEnabled();
+	}
+	public boolean isClassTopicDisabled() {
+		WebElement batchList = WebDriverWaitUtility.waitForElementToBeVisible(classTopic);
+		return batchList.isEnabled();
+	}
+	
+	
 
 }

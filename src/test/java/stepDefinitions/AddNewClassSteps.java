@@ -37,7 +37,7 @@ public class AddNewClassSteps {
 
 	@When("Admin clicks a add new class under the class menu bar")
 	public void admin_clicks_a_add_new_class_under_the_class_menu_bar() {
-	   addNewClassPage.addNewProgramClick();
+	   addNewClassPage.addNewClassClick();
 	}
 
 	@Then("Admin should see a popup open for class details along with SAVE and CANCEL button and Close\\(X) Icon")
