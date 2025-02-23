@@ -28,7 +28,7 @@ public class ClassSteps {
 		this.loginPage = testContext.getLoginPage();
 	}
 
-	@Given("Admin is on the home Page")
+	@Given("Admin is on the home Page for class")
 	public void admin_is_on_the_home_page() {
 
 		LogHelper.info("Admin is on class Home page");
@@ -47,8 +47,8 @@ public class ClassSteps {
 		Assert.assertEquals(classPage.getCurrentUrl(), ConfigReader.getManageClassUrl());
 	}
 
-	@Then("Admin should see the {string} Title")
-	public void admin_should_see_the_title(String pageTitile) {
+	@Then("Admin should see the {string} Title On Class Page")
+	public void admin_should_see_the_title_class(String pageTitile) {
 		Assert.assertEquals(classPage.getPageTitle(), pageTitile);
 	}
 

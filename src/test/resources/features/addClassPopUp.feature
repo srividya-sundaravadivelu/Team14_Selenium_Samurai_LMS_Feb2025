@@ -3,7 +3,7 @@ Feature: Add new class
 
   Background: User is on base page
     Given Admin is on login Page
-    When Admin enter valid data from excel row "2"
+    When Admin enter valid data from excel row "1"
     And Admin clicks the Class Navigation bar in the Header
     Then Admin clicks a add new class under the class menu bar
 
