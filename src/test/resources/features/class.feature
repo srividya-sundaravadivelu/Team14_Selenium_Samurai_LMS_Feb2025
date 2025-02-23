@@ -3,7 +3,7 @@ Feature: Class Page Validation
 
   Background: User is on base page
     Given Admin is on login Page
-    When Admin enter valid data from excel row "1"
+    When Admin enter valid data from excel row "2"
 
   Scenario: Validating the class manage page
     Given Admin is on the home Page

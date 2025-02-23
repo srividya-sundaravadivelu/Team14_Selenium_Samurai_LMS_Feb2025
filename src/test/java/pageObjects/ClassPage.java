@@ -46,9 +46,13 @@ public class ClassPage extends BasePage {
 
 	@FindBy(xpath = "//button[@class='p-button-danger p-button p-component p-button-icon-only']")
 	private WebElement deleteAll;
+	
+	
 
 	public void clickBtnClass() {
-		classBtn.click();
+		WebElement btnClass = WebDriverWaitUtility.waitForElementToBeClickable(classBtn);
+		//return editBtnList;
+				btnClass.click();
 	}
 
 	public String getPageTitle() {
@@ -125,4 +129,6 @@ public class ClassPage extends BasePage {
 
 		return totalNoOfClasses.isDisplayed();
 	}
+	
+
 }

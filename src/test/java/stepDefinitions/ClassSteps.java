@@ -19,11 +19,13 @@ public class ClassSteps {
 
 	TestContext testContext;
 	ClassPage classPage;
+	LoginPage loginPage;
 	List<HashMap<String, String>> datamap; // Data driven
 
 	public ClassSteps(TestContext testContext) {
 		this.testContext = testContext;
 		this.classPage = testContext.getClassPage();
+		this.loginPage = testContext.getLoginPage();
 	}
 
 	@Given("Admin is on the home Page")

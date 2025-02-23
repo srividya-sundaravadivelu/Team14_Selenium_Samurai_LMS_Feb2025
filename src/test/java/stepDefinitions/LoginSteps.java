@@ -55,31 +55,32 @@ public class LoginSteps {
 
 	@When("Admin enter valid data from excel row {string}")
 	public void admin_enter_valid_data_from_excel_row(String rows) throws InterruptedException {
+	
+		
 		LogHelper.info("entering username and password");
-		datamap = DataReader.data(System.getProperty("user.dir") + "\\testData\\ExcelData.xlsx", "LoginPage");
+
+		dataInitialization();
 		LogHelper.info("user fills data from excel");
 		int index = Integer.parseInt(rows) - 1;
 
-		// Get action for browser elements, to perform action on them
-		Actions action = new Actions(testContext.getdriver());
-
-		// Type username
-		action.moveToElement(loginPage.userNameInput).click().sendKeys(datamap.get(index).get("Username")).build().perform();
-		// Type password
-		action.moveToElement(loginPage.passwordInput).click().sendKeys(datamap.get(index).get("Password")).build().perform();
-		// Select role
-
-		action.moveToElement(loginPage.role).click().build().perform();
-
-		testContext.getdriver().findElement(By.xpath("//mat-option[span[text()[contains(.,'Admin')]]]")).click();
-
-		loginPage.clickLogin();
-		Thread.sleep(2000);
+		loginPage.enterUsername(datamap.get(index).get("Username"));
+        loginPage.enterPassword(datamap.get(index).get("Password"));
+        loginPage.selectRole("Admin");
+        loginPage.clickLogin();
+        Thread.sleep(1000);
 	}
-
+	 public void dataInitialization() {
+	        if (datamap == null) {
+	            datamap = DataReader.data(System.getProperty("user.dir") + "\\testData\\ExcelData.xlsx", "LoginPage");
+	        }
+	    }
 	@Then("Admin should land on home page")
-	public void admin_should_land_on_home_page() {
-		LogHelper.info("Admin is on Home page");
-		Assert.assertEquals(loginPage.getCurrentUrl(), ConfigReader.getBaseUrl());
+	public void admin_should_land_on_home_page() throws InterruptedException {
+		 Thread.sleep(500);
+	        LogHelper.info("Current URL:" + loginPage.getCurrentUrl());
+	        Assert.assertEquals(loginPage.getCurrentUrl(), ConfigReader.getBaseUrl());
+	        LogHelper.info("Admin is on Home page");
+		//LogHelper.info("Admin is on Home page");
+		//Assert.assertEquals(loginPage.getCurrentUrl(), ConfigReader.getBaseUrl());
 	}
 }
