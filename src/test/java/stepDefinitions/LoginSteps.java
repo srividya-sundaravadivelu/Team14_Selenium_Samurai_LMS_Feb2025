@@ -87,6 +87,7 @@ public class LoginSteps {
         loginPage.enterPassword(datamap.get(index).get("Password"));
         loginPage.selectRole("Admin");
         loginPage.clickLogin();
+        Thread.sleep(1000);
 	}
 //    @When("Admin enter data from excel row {string}")
 //    public void admin_enter_data_from_excel_row(String rows) throws InterruptedException {
