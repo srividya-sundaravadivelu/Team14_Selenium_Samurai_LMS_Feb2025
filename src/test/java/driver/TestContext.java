@@ -29,6 +29,7 @@ public class TestContext {
 
 	private LogoutPage logoutpage;
 	private HomePage homePage;
+	private ProgramSortPage programsortpage;
 
 
 
@@ -116,6 +117,11 @@ public class TestContext {
 		if (logoutpage == null)
 			logoutpage = new LogoutPage(driver);
 		return logoutpage;
+	}
+	public ProgramSortPage getProgramSortPage() {
+		if (programsortpage ==null)
+			programsortpage = new ProgramSortPage(driver);
+		return programsortpage;
 	}
 
 }
