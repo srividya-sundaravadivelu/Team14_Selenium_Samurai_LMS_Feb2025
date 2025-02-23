@@ -35,7 +35,7 @@ Feature: Add new class
     
     Scenario: Check if the fields are updated with valid data
     Given Admin is on the Edit Class Popup window
-    When Admin updates the fields with valid data from excel row "4" and clicks on save button
+    When Admin updates the fields with valid data from excel row "3" and clicks on save button
     Then Admin gets message "class details updated Successfully " and see the updated values in data table
     
     

@@ -10,10 +10,8 @@ import org.openqa.selenium.support.FindBy;
 //import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import lombok.Data;
 import utils.WebDriverWaitUtility;
 
-@Data
 public class ClassPage extends BasePage {
 
 	public ClassPage(WebDriver driver) {
