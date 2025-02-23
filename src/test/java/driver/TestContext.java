@@ -28,9 +28,9 @@ public class TestContext {
 	private Actions actions;
 	private ProgramDeletePage programdeletepage;
 
+	private Program1Page programPage;
 	private BatchPage batchPage;
 	private addBatchPage addbatchPage;
-
 	private LogoutPage logoutpage;
 	private HomePage homePage;
 
@@ -110,6 +110,12 @@ public class TestContext {
 		if (editClassPage == null)
 			editClassPage = new EditClassPage(driver);
 		return editClassPage;
+	}
+
+	public Program1Page getProgramPage() {
+		if (programPage == null)
+			programPage = new Program1Page(driver);
+		return programPage;
 	}
 
 	public BatchPage getBatchPage() {

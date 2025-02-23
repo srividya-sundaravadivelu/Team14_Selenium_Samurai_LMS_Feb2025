@@ -90,7 +90,6 @@ public class LoginSteps {
         loginPage.enterPassword(datamap.get(index).get("Password"));
         loginPage.selectRole("Admin");
         loginPage.clickLogin();
-
         Thread.sleep(1000);
 	}
 	
