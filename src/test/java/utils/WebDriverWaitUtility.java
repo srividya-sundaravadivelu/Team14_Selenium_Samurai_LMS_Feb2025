@@ -1,6 +1,7 @@
 package utils;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -25,6 +26,10 @@ public class WebDriverWaitUtility {
 	    return wait.until(ExpectedConditions.invisibilityOf(element));
 	}
 
+	public static List<WebElement> waitForListOfElementsToBeVisible(List<WebElement> webElelments) {
+		
+		return wait.until(ExpectedConditions.visibilityOfAllElements(webElelments));
+	}
 	public static WebElement waitForElementToBeClickable(WebElement element) {
 		return wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
