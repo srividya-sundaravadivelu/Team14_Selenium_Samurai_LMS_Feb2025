@@ -17,6 +17,8 @@ public class TestContext {
 	WebDriver driver;
 	private LoginPage loginPage;
 	private Program1Page programPage;
+	private ManageProgramPage manageProgramPage;
+	private EditProgramPage editProgramPage;
 
 	private BatchPage batchPage;
 	private addBatchPage addbatchPage;
@@ -84,6 +86,18 @@ public class TestContext {
 		if(programPage == null)
 			programPage = new Program1Page(driver);
 		return programPage;
+	}
+	
+	public ManageProgramPage getManageProgramPage() {
+		if(manageProgramPage == null)
+			manageProgramPage = new ManageProgramPage(driver);
+		return manageProgramPage;
+	}
+	
+	public EditProgramPage getEditProgramPage() {
+		if(editProgramPage == null)
+			editProgramPage = new EditProgramPage(driver);
+		return editProgramPage;
 	}
 
 
