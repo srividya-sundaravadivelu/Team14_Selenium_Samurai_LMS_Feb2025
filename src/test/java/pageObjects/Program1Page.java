@@ -166,8 +166,7 @@ public class Program1Page extends BasePage {
 		WebDriverWaitUtility.waitForElementToBeClickable(addNewSubMenuModule).click();
 				
 	}
-	public boolean admin_should_see_pop_up_window_for_program_details() {
-		
+	public boolean admin_should_see_pop_up_window_for_program_details(){		
 		boolean isProgramDetailsPopUpVisible = WebDriverWaitUtility.waitForElementToBeVisible(programDetailsTitle).isDisplayed();
 		if (!isProgramDetailsPopUpVisible)
 			LogHelper.error("Program Pop up Window is not visible");

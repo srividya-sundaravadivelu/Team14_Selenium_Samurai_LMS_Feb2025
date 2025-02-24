@@ -25,10 +25,10 @@ public class Program1Steps {
 	}
 		
 	@Given("Admin is on home page after Login")
-	public void admin_is_on_home_page_after_login() {				
-		LogHelper.info(homePage.getCurrentUrl());		
-		LogHelper.info("Admin is on Home page");				
-		Assert.assertEquals(homePage.getCurrentUrl(), ConfigReader.getBaseUrl());
+	public void admin_is_on_home_page_after_login() {											
+		homePage.navigateToPage(ConfigReader.getHomeUrl());		
+		LogHelper.info("Admin is on Home page");
+		Assert.assertEquals(homePage.getCurrentUrl(), ConfigReader.getHomeUrl());
 				
 	}
 
