@@ -43,6 +43,10 @@ public class ConfigReader {
 	public static String getLoginUrl() {
 		return properties.getProperty("login.url");
 	}
+	// Manage Class url
+	public static String getManageClassUrl() {
+		return properties.getProperty("manageClass.url");
+	}
 	// Home Page URL
 	public static String getHomeUrl() {
 		return properties.getProperty("home.url");

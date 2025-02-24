@@ -78,7 +78,10 @@ public class LoginSteps {
 
 	@When("Admin enter valid data from excel row {string}")
 	public void admin_enter_valid_data_from_excel_row(String rows) throws InterruptedException {
+	
+		
 		LogHelper.info("entering username and password");
+
 		dataInitialization();
 		LogHelper.info("user fills data from excel");
 		int index = Integer.parseInt(rows) - 1;
@@ -87,7 +90,11 @@ public class LoginSteps {
         loginPage.enterPassword(datamap.get(index).get("Password"));
         loginPage.selectRole("Admin");
         loginPage.clickLogin();
+        Thread.sleep(1000);
 	}
+	
+	
+	
 //    @When("Admin enter data from excel row {string}")
 //    public void admin_enter_data_from_excel_row(String rows) throws InterruptedException {
 //        LogHelper.info("entering username and password");
@@ -263,3 +270,4 @@ public class LoginSteps {
         LogHelper.info("Options are displayed in dropdown");
     }
 }
+

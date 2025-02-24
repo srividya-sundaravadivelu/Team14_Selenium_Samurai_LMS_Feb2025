@@ -44,8 +44,11 @@ Feature: Batch Page Navigation
     |checkbox  in the datatable header row|
     |sort icon next to all Datatable headers|
     
-    
-    
-    
+   #Scenario: Validate all the fields exist in pop up 
+   #Given Admin is on the Batch Details Pop Up WIndow
+   #When Admin checks all the fields are enabled
+   #Then The pop up should include the fields Batch Name,Number of classes and Description as text box,Program Name as drop down Status as radio button
+    #
+    #
     
     
