@@ -22,14 +22,12 @@ public class TestContext {
 	private LoginPage loginPage;
 	private Actions actions;
 	private ProgramDeletePage programdeletepage;
-
 	private BatchPage batchPage;
 	private addBatchPage addbatchPage;
-	
-
 	private LogoutPage logoutpage;
 	private HomePage homePage;
 	private ProgramSortPage programsortpage;
+	private ProgramSearchPage programsearchpage;
 
 
 
@@ -97,7 +95,6 @@ public class TestContext {
 			addbatchPage = new addBatchPage(driver);
 		return addbatchPage;
 	}
-
 	
 	public Actions getActions() {
 		return actions;
@@ -122,6 +119,11 @@ public class TestContext {
 		if (programsortpage ==null)
 			programsortpage = new ProgramSortPage(driver);
 		return programsortpage;
+	}
+	public ProgramSearchPage getProgramSearchPage() {
+		if (programsearchpage ==null)
+			programsearchpage = new ProgramSearchPage(driver);
+		return programsearchpage;
 	}
 
 }
