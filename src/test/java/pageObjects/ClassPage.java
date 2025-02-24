@@ -3,6 +3,8 @@ package pageObjects;
 import java.time.Duration;
 import java.util.List;
 
+import org.apache.xmlbeans.impl.xb.xsdschema.FieldDocument;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +12,7 @@ import org.openqa.selenium.support.FindBy;
 //import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import utils.LogHelper;
 import utils.WebDriverWaitUtility;
 
 public class ClassPage extends BasePage {
@@ -45,7 +48,8 @@ public class ClassPage extends BasePage {
 	@FindBy(xpath = "//button[@class='p-button-danger p-button p-component p-button-icon-only']")
 	private WebElement deleteAll;
 	
-	
+	@FindBy(xpath = "/html/body/app-root/app-session/div/mat-card/mat-card-content/p-table/div/p-paginator/div/span[1]")
+	private WebElement showingResults;
 
 	public void clickBtnClass() {
 		WebElement btnClass = WebDriverWaitUtility.waitForElementToBeClickable(classBtn);
@@ -124,9 +128,54 @@ public class ClassPage extends BasePage {
 	}
 
 	public boolean isTotalClassesDisplayed() {
-
 		return totalNoOfClasses.isDisplayed();
 	}
-	
 
+	public String getShowingResultsText() throws InterruptedException {
+		Thread.sleep(2000);
+		return showingResults.getText();
+	}
+
+	public boolean clicknextpage() throws InterruptedException {
+		WebElement nextpagebutton = driver.findElement(By.xpath("//button[contains(@class, 'p-paginator-next')]"));
+		LogHelper.info("Is Displayed: " + nextpagebutton.isDisplayed());
+		LogHelper.info("Is Enabled: " + nextpagebutton.isEnabled());
+		LogHelper.info("Is Selected: " + nextpagebutton.isSelected());
+
+		WebDriverWaitUtility.clickElementUsingAction(driver, nextpagebutton);
+		nextpagebutton.click();
+		return true;
+	}
+
+	public boolean clickPreviousPage() throws InterruptedException {
+		Thread.sleep(2000);
+		WebElement previouspagebutton = driver.findElement(By.xpath("//button[contains(@class, 'p-paginator-prev')]"));
+		LogHelper.info("Is Displayed: " + previouspagebutton.isDisplayed());
+		LogHelper.info("Is Enabled: " + previouspagebutton.isEnabled());
+		LogHelper.info("Is Selected: " + previouspagebutton.isSelected());
+
+		WebDriverWaitUtility.clickElementUsingAction(driver, previouspagebutton);
+		//previouspagebutton.click();
+		return true;
+	}
+
+	public void clickLastPage() {
+		WebElement lastpagebutton = driver.findElement(By.xpath("//button[contains(@class, 'p-paginator-last')]"));
+		LogHelper.info("Is Displayed: " + lastpagebutton.isDisplayed());
+		LogHelper.info("Is Enabled: " + lastpagebutton.isEnabled());
+		LogHelper.info("Is Selected: " + lastpagebutton.isSelected());
+
+		WebDriverWaitUtility.clickElementUsingAction(driver, lastpagebutton);
+		lastpagebutton.click();
+	}
+
+	public void clickFirstPage() {
+		WebElement firstpagebutton = driver.findElement(By.xpath("//button[contains(@class, 'p-paginator-first')]"));
+		LogHelper.info("Is Displayed: " + firstpagebutton.isDisplayed());
+		LogHelper.info("Is Enabled: " + firstpagebutton.isEnabled());
+		LogHelper.info("Is Selected: " + firstpagebutton.isSelected());
+
+		WebDriverWaitUtility.clickElementUsingAction(driver, firstpagebutton);
+		//firstpagebutton.click();
+	}
 }

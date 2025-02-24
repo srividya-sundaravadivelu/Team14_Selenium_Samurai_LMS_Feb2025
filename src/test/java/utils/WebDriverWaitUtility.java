@@ -6,6 +6,7 @@ import java.util.List;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -47,6 +48,13 @@ public class WebDriverWaitUtility {
 	public static void waitForTitle(WebDriver driver, String expectedTitle) {
 	    new WebDriverWait(driver, Duration.ofSeconds(10))
 	        .until(ExpectedConditions.titleIs(expectedTitle));
+	}
+
+	// Creating below method as some of the elements are not being clicked using options elementclickable
+	// Creating this as common place so that others can use it.
+	public static void clickElementUsingAction(WebDriver driver, WebElement element) {
+		Actions actionToClick = new Actions(driver);
+		actionToClick.moveToElement(element).click().perform();
 	}
 
 }

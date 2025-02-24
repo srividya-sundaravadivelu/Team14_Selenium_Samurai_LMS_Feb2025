@@ -78,10 +78,7 @@ public class LoginSteps {
 
 	@When("Admin enter valid data from excel row {string}")
 	public void admin_enter_valid_data_from_excel_row(String rows) throws InterruptedException {
-	
-		
 		LogHelper.info("entering username and password");
-
 		dataInitialization();
 		LogHelper.info("user fills data from excel");
 		int index = Integer.parseInt(rows) - 1;
@@ -92,31 +89,6 @@ public class LoginSteps {
         loginPage.clickLogin();
         Thread.sleep(1000);
 	}
-	
-	
-	
-//    @When("Admin enter data from excel row {string}")
-//    public void admin_enter_data_from_excel_row(String rows) throws InterruptedException {
-//        LogHelper.info("entering username and password");
-//        dataInitialization();
-//        LogHelper.info("user fills data from excel");
-//        int index = Integer.parseInt(rows) - 1;
-//
-//        // Get action for browser elements, to perform action on them
-//        Actions action = new Actions(testContext.getdriver());
-//
-//        // Type username
-//        action.moveToElement(loginPage.userNameInput).click().sendKeys(datamap.get(index).get("Username")).build().perform();
-//        // Type password
-//        action.moveToElement(loginPage.passwordInput).click().sendKeys(datamap.get(index).get("Password")).build().perform();
-//        // Select role
-//
-//        action.moveToElement(loginPage.role).click().build().perform();
-//
-//        testContext.getdriver().findElement(By.xpath("//mat-option[span[text()[contains(.,'Admin')]]]")).click();
-//
-//        loginPage.clickLogin();
-//    }
 
     @Then("Admin should receive application error") // invalid URL
     public void admin_should_receive_application_error() {
