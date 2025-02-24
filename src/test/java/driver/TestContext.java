@@ -31,8 +31,7 @@ public class TestContext {
 	private EditClassPage editClassPage;
 	private Actions actions;
 	private ProgramDeletePage programdeletepage;
-
-	private Program1Page programPage;
+	
 	private BatchPage batchPage;
 	private addBatchPage addbatchPage;
 	private LogoutPage logoutpage;
