@@ -34,11 +34,13 @@ public class HomeSteps {
 
 	@Then("LMS title should be on the top left corner of page")
 	public void lms_title_should_be_on_the_top_left_corner_of_page() {		
+		LogHelper.info("LMS title should be on the top left corner of page");
 		Assert.assertTrue(homePage.isTitleOnTopLeft());
 	}
 
 	@Then("Admin should see correct spelling in navigation bar text")
 	public void admin_should_see_correct_spelling_in_navigation_bar_text() throws IOException {
+		LogHelper.info("Admin should see correct spelling in navigation bar text");
 		Assert.assertFalse(homePage.hasNavBarSpellingMistakes());
 	}
 	
@@ -50,36 +52,43 @@ public class HomeSteps {
 	
 	@Then("Admin should see the navigation bar text on the top right side")
 	public void admin_should_see_the_navigation_bar_text_on_the_top_right_side() {
+		LogHelper.info("Admin should see the navigation bar text on the top right side");
 		Assert.assertTrue(homePage.isNavBarOnTopRight());
 	}
 	
 	@Then("Admin should see home in the 1st place")
 	public void admin_should_see_home_in_the_1st_place() {
+		LogHelper.info("Admin should see home in the 1st place");
 		Assert.assertEquals(homePage.getNavItemPosition("home"), 1);
 	}
 	
 	@Then("Admin should see program in the 2nd place")
 	public void admin_should_see_program_in_the_2nd_place() {
+		LogHelper.info("Admin should see program in the 2nd place");
 		Assert.assertEquals(homePage.getNavItemPosition("program"), 2);
 	}
 	
 	@Then("Admin should see batch in the 3rd place")
 	public void admin_should_see_batch_in_the_3rd_place() {
+		LogHelper.info("Admin should see batch in the 3rd place");
 		Assert.assertEquals(homePage.getNavItemPosition("batch"), 3);
 	}
 	
 	@Then("Admin should see class in the 4th place")
 	public void admin_should_see_class_in_the_4th_place() {
+		LogHelper.info("Admin should see class in the 4th place");
 		Assert.assertEquals(homePage.getNavItemPosition("class"), 4);
 	}
 	
 	@Then("Admin should see logout in the 5th place")
 	public void admin_should_see_logout_in_the_5th_place() {
+		LogHelper.info("Admin should see logout in the 5th place");
 		Assert.assertEquals(homePage.getNavItemPosition("logout"), 5);
 	}
 	
 	@Then("Admin should see piechart")
 	public void admin_should_see_piechart() {
+		LogHelper.info("Admin should see piechart");
 		Assert.assertTrue(homePage.isPieChartVisible());
 	}
 	
@@ -91,51 +100,63 @@ public class HomeSteps {
 		
 		Assert.assertEquals(homePage.getWecomeMessage(),"Welcome "+ userName); 
 		Assert.assertEquals(homePage.getRoleName(), ADMIN_ROLE);
+		
+		LogHelper.info("User Name: " + homePage.getWecomeMessage());
+		LogHelper.info("Role: " + homePage.getRoleName());
+		
 	}
 	
 	@Then("Admin should see bar chart for Active and inactive user")
 	public void admin_should_see_bar_chart_for_active_and_inactive_user() {
+		LogHelper.info("Admin should see bar chart for Active and inactive user");
 		Assert.assertTrue(homePage.isBarChartVisible());
 	}
 	
 	@Then("Admin should see user count")
 	public void admin_should_see_user_count() {
+		LogHelper.info("Admin should see user count");
 		Assert.assertTrue(homePage.getUserCount() >= 0);
 	}
 	
 	@Then("Admin should see staff count")
 	public void admin_should_see_staff_count() {
+		LogHelper.info("Admin should see staff count");
 		Assert.assertTrue(homePage.getStaffCount() >= 0);
 	}
 	
 	@Then("Admin should see Program count")
 	public void admin_should_see_program_count() {
+		LogHelper.info("Admin should see Program count");
 		Assert.assertTrue(homePage.getProgramCount() >= 0);
 	}
 	
 	@Then("Admin should see batch count")
 	public void admin_should_see_batch_count() {
+		LogHelper.info("Admin should see batch count");
 		Assert.assertTrue(homePage.getBatchCount() >= 0);
 	}
 	
 	@Then("Admin should see staff table with pagination icons")
 	public void admin_should_see_staff_table_with_pagination_icons() {
+		LogHelper.info("Admin should see staff table with pagination icons");
 		Assert.assertTrue(homePage.isStaffTableVisibleWithPagination());
 	}
 	
 	@Then("Admin should see 5 staff data in a page")
 	public void admin_should_see_5_staff_data_in_a_page() {
+		LogHelper.info("Admin should see 5 staff data in a page");
 		Assert.assertEquals(homePage.getStaffTablePageSize(), PAGE_SIZE);
 	}
 	
 	@Then("Admin should see previous page icon disabled")
 	public void admin_should_see_previous_page_icon_disabled() {
+		LogHelper.info("Admin should see previous page icon disabled");
 		Assert.assertFalse(homePage.isPreviousPageButtonEnabled());
 	}
 	
 	@Then("Admin should see first page icon disabled")
 	public void admin_should_see_first_page_icon_disabled() {
+		LogHelper.info("Admin should see first page icon disabled");
 		Assert.assertFalse(homePage.isFirstPageButtonEnabled());
 	}
-
 }
