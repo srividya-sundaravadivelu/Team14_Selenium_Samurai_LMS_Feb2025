@@ -1,10 +1,14 @@
 package stepDefinitions;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.testng.Assert;
 import driver.TestContext;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageObjects.ProgramSearchPage;
+import utils.LogHelper;
 
 public class ProgramSearchSteps {
 	TestContext testContext;
@@ -51,6 +55,64 @@ public class ProgramSearchSteps {
 		System.out.println("invalid call " + string);
 		boolean invalidprogname = programsearchpage.InvalidPname(string);
 	    Assert.assertFalse(invalidprogname, "Expected Program Name not found in search results: " + string);
+	}
+	//************************pagination****************************
+	@When("Admin clicks Next page link on the program table")
+	public void admin_clicks_next_page_link_on_the_program_table() {
+	    programsearchpage.clickOnNextpage();
+	}
+
+	@Then("Admin validates Pagination has next active link on program table")
+	public void admin_validates_pagination_has_next_active_link_on_program_table()throws InterruptedException {
+		String text = programsearchpage.getShowingResultsText();
+		LogHelper.info("Text found as : " + text);
+	    Pattern pattern = Pattern.compile("Showing \\d+ to \\d+ of \\d+ entries");
+	    Matcher matcher = pattern.matcher(text);
+	    Assert.assertTrue(matcher.find(), "Paginator text does not match expected format: " + text);
+//		Assert.assertTrue(text.contains("Showing 1 to "));
+	
+	}
+
+	@When("Admin clicks Last page link on the program table")
+	public void admin_clicks_last_page_link_on_the_program_table() {
+		programsearchpage.ClickOnLastPage();
+	}
+
+	@Then("Admin validates last page record and next page link disabled in program")
+	public void admin_validates_last_page_record_and_next_page_link_disabled_in_program() throws InterruptedException {
+		String text = programsearchpage.getShowingResultsText();
+		LogHelper.info("Text found as : " + text);
+	    Pattern pattern = Pattern.compile("Showing \\d+ to \\d+ of \\d+ entries");
+	    Matcher matcher = pattern.matcher(text);
+	    Assert.assertTrue(matcher.find(), "Paginator text does not match expected format: " + text);
+	}
+
+	@When("Admin clicks Previous page link in program table")
+	public void admin_clicks_previous_page_link_in_program_table() {
+		programsearchpage.clickOnPreviousPage();
+	}
+
+	@Then("Admin validates previous page record and pagination has previous page link in program")
+	public void admin_validates_previous_page_record_and_pagination_has_previous_page_link_in_program() throws InterruptedException {
+		String text = programsearchpage.getShowingResultsText();
+		LogHelper.info("Text found as : " + text);
+	    Pattern pattern = Pattern.compile("Showing \\d+ to \\d+ of \\d+ entries");
+	    Matcher matcher = pattern.matcher(text);
+	    Assert.assertTrue(matcher.find(), "Paginator text does not match expected format: " + text);
+	}
+
+	@When("Admin clicks First page link in program table")
+	public void admin_clicks_first_page_link_in_program_table() {
+		programsearchpage.ClickOnFirstPage();
+	}
+
+	@Then("Admin validates very first page record and Previous page link are disabled in program")
+	public void admin_validates_very_first_page_record_and_previous_page_link_are_disabled_in_program() throws InterruptedException {
+		String text = programsearchpage.getShowingResultsText();
+		LogHelper.info("Text found as : " + text);
+	    Pattern pattern = Pattern.compile("Showing \\d+ to \\d+ of \\d+ entries");
+	    Matcher matcher = pattern.matcher(text);
+	    Assert.assertTrue(matcher.find(), "Paginator text does not match expected format: " + text);
 	}
 
 
