@@ -29,12 +29,7 @@ public class AddNewClassPage extends BasePage {
 	@FindBy(xpath = "//label[text()='Class Topic ']")
 	private WebElement classTopicPopup;
 
-	public String addNewProgram() {
-
-		WebElement subMenuItem = WebDriverWaitUtility.waitForElementToBeClickable(addNewClass);
-		
-		return subMenuItem.getText();
-	}
+	
 
 	public void addNewClassClick() {
 

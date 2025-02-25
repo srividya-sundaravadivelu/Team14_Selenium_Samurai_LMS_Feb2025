@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import utils.WebDriverWaitUtility;
@@ -21,6 +22,9 @@ public class AddClassPopUp extends BasePage {
 		super(driver);
 	}
 	
+	private String batchName;
+	private String classTopicName;
+	String[] classDetails = new String[2];
 	// Mandatory fields
 
 		@FindBy(xpath = "//input[@placeholder='Select a Batch Name']")
@@ -178,27 +182,28 @@ public class AddClassPopUp extends BasePage {
 		public void editClassDtetails(HashMap<String,String> classDetails) throws InterruptedException {
 			
 			try {
+				
 				classDescription.click();
 				staffName.click();
+				statusActive.click();
+				
 			} catch (Exception e) {
-				((JavascriptExecutor) driver).executeScript("arguments[0].click();arguments[1].click();arguments[2].click();arguments[3].click();",
-						classDescription,staffName,statusActive,saveAddClass);
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();arguments[1].click();arguments[2].click();",
+						classDescription,staffName,statusActive);
 			}
 			
 			classDescription.sendKeys(classDetails.get("ClassDescription"));
 			staffName.clear();
 			staffName.sendKeys(classDetails.get("StaffName"));
-			statusActive.click();
-			saveAddClass.click();
-//			if (classDetails.get("Status").equals("Active")) {
-//				statusActive.click();
-//			} else {
-//				statusInActive.click();
-//
-//			}
-//			saveAddClass.click();
-
-			//return classCreated.getText();
+			try {
+				
+				saveBtn.click();
+				
+			} catch (Exception e) {
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+						saveBtn);
+			}
+			
 		}
 		
 		
@@ -220,6 +225,48 @@ public class AddClassPopUp extends BasePage {
 		public void clickSaveBtn() {
 			saveBtn.click();
 		}
+		public String[] getEditedClassDetails() {
+			
+
+			this.batchName = batchNameDrpdw.getText();
+			this.classTopicName = classTopic.getText();
+			classDetails[0] = this.batchName;
+			classDetails[1] = this.classTopicName;
+			return classDetails;
+		}
 		
+		public String getSelectedBatchName() {
+			//WebElement bName = WebDriverWaitUtility.waitForElementToBeVisible(batchNameDrpdw);
+//			try{	
+//					batchNameDrpdw.click();
+//				
+//			} catch (Exception e) {
+//				((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+//						batchNameDrpdw);
+//			}
+	        JavascriptExecutor js = (JavascriptExecutor) driver;
+	        this.batchName = (String) js.executeScript("return arguments[0].textContent;", batchNameDrpdw);
+			return this.batchName;
+		}
 		
+		public String getSelectedClassTopic() {
+			WebElement topic = WebDriverWaitUtility.waitForElementToBeVisible(classTopic);
+			//this.classTopicName = topic.getText();
+			 
+	        JavascriptExecutor js = (JavascriptExecutor) driver;
+	        this.classTopicName = (String) js.executeScript("return arguments[0].textContent;", topic);
+	        System.out.println("topic========"+this.classTopicName);
+			return this.classTopicName;
+		}
+		
+		public void clickCancelBtn() {
+			try {
+				
+				cancelBtn.click();
+				
+			} catch (Exception e) {
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();",cancelBtn);
+			}
+			
+		}
 }

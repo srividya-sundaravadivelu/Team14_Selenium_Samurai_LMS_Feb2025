@@ -33,8 +33,10 @@ public class TestContext {
 	private addBatchPage addbatchPage;
 	private LogoutPage logoutpage;
 	private HomePage homePage;
+	private ClassSortPage classSortPage;
 	private ProgramSortPage programsortpage;
 	private ProgramSearchPage programsearchpage;
+
 
 	public void setDriver(String browser) {
 		LogHelper.info("Browser value inside SetDriver method in TestContext:" + browser);
@@ -101,7 +103,12 @@ public class TestContext {
 			addNewClassPage = new AddNewClassPage(driver);
 		return addNewClassPage;
 	}
-
+	public ClassSortPage getClassSortPage() {
+		if (classSortPage == null)
+			classSortPage = new ClassSortPage(driver);
+		return classSortPage;
+	}
+	
 	public AddClassPopUp getAddClassPopUp() {
 		if (addClassPopUp == null)
 			addClassPopUp = new AddClassPopUp(driver);
