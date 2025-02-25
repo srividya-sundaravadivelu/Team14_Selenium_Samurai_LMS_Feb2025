@@ -43,7 +43,20 @@ public class ConfigReader {
 	public static String getLoginUrl() {
 		return properties.getProperty("login.url");
 	}
-	
+	// Manage Class url
+	public static String getManageClassUrl() {
+		return properties.getProperty("manageClass.url");
+	}
+	// Home Page URL
+	public static String getHomeUrl() {
+		return properties.getProperty("home.url");
+	}
+	public static String getProgramUrl() {
+		return properties.getProperty("program.url");
+	}
+	public static String getBatchUrl() {
+		return properties.getProperty("batch.url");
+	}
 	public static boolean isChromeHeadless() {
 		return Boolean.parseBoolean(properties.getProperty("browser.chrome.headless", "false"));
 	}
