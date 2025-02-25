@@ -33,7 +33,7 @@ public class Program_AddNewProgramSteps {
 		}
 
 		@Then("Admin should see pop up window for program details")
-		public void admin_should_see_pop_up_window_for_program_details() {
+		public void admin_should_see_pop_up_window_for_program_details(){
 			Assert.assertTrue(addNewProgramPage.admin_should_see_pop_up_window_for_program_details());
 		    
 		}

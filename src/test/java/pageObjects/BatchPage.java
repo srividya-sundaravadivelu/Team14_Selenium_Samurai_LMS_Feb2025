@@ -18,22 +18,22 @@ public class BatchPage extends BasePage {
 	
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	
-	@FindBy(id = "username")
-	public WebElement userNameInput;
-
-	@FindBy(id = "password")
-	public WebElement passwordInput;
-
-	@FindBy(xpath = "//*[@id=\"mat-select-value-1\"]/span")
-	public WebElement role;
-
-	@FindBy(xpath = "//mat-option[span[text()[contains(.,'Admin')]]]")
-	public WebElement adminRole;
-
-	@FindBy(id = "login")
-	public WebElement login;
+//	@FindBy(id = "username")
+//	public WebElement userNameInput;
+//
+//	@FindBy(id = "password")
+//	public WebElement passwordInput;
+//
+//	@FindBy(xpath = "//*[@id=\"mat-select-value-1\"]/span")
+//	public WebElement role;
+//
+//	@FindBy(xpath = "//mat-option[span[text()[contains(.,'Admin')]]]")
+//	public WebElement adminRole;
+//
+//	@FindBy(id = "login")
+//	public WebElement login;
 	
-	@FindBy(xpath="//button[span[text()='Batch']]")
+	@FindBy(xpath="//button[contains(@class,'mat-button')]/span[text()='Batch']")
 	private WebElement BatchButton;
 	
 	@FindBy(xpath="//div[text()=' Manage Batch']")
@@ -58,6 +58,8 @@ public class BatchPage extends BasePage {
 	private WebElement isCheckBoxHeaderEnable;
 	@FindBy(xpath="//i[@class='p-sortable-column-icon pi pi-fw pi-sort-alt']")
 	private List<WebElement>isSortingEnable;
+	//.............Add New Batch
+	
 	
 	public String getBatchPageUrl() {
 		String CurrentUrl=driver.getCurrentUrl();
@@ -156,9 +158,9 @@ public class BatchPage extends BasePage {
 	}
 		
 
-	public void clickLogin(){
-		login.click();
-	}
+//	public void clickLogin(){
+//		login.click();
+//	}
 	
 	
 }

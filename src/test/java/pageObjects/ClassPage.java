@@ -1,16 +1,22 @@
 package pageObjects;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
+
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 //import org.openqa.selenium.support.ui.ExpectedConditions;
 //import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import utils.LogHelper;
 import utils.WebDriverWaitUtility;
 
 public class ClassPage extends BasePage {
@@ -53,6 +59,20 @@ public class ClassPage extends BasePage {
 
 	@FindBy(xpath = "//button[@class='p-button-danger p-button p-component p-button-icon-only']")
 	private WebElement deleteAll;
+
+	
+	@FindBy(xpath = "/html/body/app-root/app-session/div/mat-card/mat-card-content/p-table/div/p-paginator/div/span[1]")
+	private WebElement showingResults;
+	
+	@FindBy(xpath = "//tbody/tr[1]/td[2]")
+	private WebElement firstBatchNameElement;
+
+	@FindBy(xpath = "//tbody/tr[1]/td[3]")
+	private WebElement firstClassNameElement;
+
+	@FindBy(xpath = "//tbody/tr[1]/td[7]")
+	private WebElement firstStaffNameElement;
+
 
 	public void clickBtnClass() {
 		WebElement btnClass = WebDriverWaitUtility.waitForElementToBeClickable(classBtn);
@@ -170,8 +190,141 @@ public class ClassPage extends BasePage {
 	}
 
 	public boolean isTotalClassesDisplayed() {
-
 		return totalNoOfClasses.isDisplayed();
 	}
 
+	public String getShowingResultsText() throws InterruptedException {
+		Thread.sleep(2000);
+		return showingResults.getText();
+	}
+
+	public boolean clicknextpage() throws InterruptedException {
+		WebElement nextpagebutton = driver.findElement(By.xpath("//button[contains(@class, 'p-paginator-next')]"));
+		LogHelper.info("Is Displayed: " + nextpagebutton.isDisplayed());
+		LogHelper.info("Is Enabled: " + nextpagebutton.isEnabled());
+		LogHelper.info("Is Selected: " + nextpagebutton.isSelected());
+
+		WebDriverWaitUtility.clickElementUsingAction(driver, nextpagebutton);
+		nextpagebutton.click();
+		return true;
+	}
+
+	public boolean clickPreviousPage() throws InterruptedException {
+		Thread.sleep(2000);
+		WebElement previouspagebutton = driver.findElement(By.xpath("//button[contains(@class, 'p-paginator-prev')]"));
+		LogHelper.info("Is Displayed: " + previouspagebutton.isDisplayed());
+		LogHelper.info("Is Enabled: " + previouspagebutton.isEnabled());
+		LogHelper.info("Is Selected: " + previouspagebutton.isSelected());
+
+		WebDriverWaitUtility.clickElementUsingAction(driver, previouspagebutton);
+		//previouspagebutton.click();
+		return true;
+	}
+
+	public void clickLastPage() {
+		WebElement lastpagebutton = driver.findElement(By.xpath("//button[contains(@class, 'p-paginator-last')]"));
+		LogHelper.info("Is Displayed: " + lastpagebutton.isDisplayed());
+		LogHelper.info("Is Enabled: " + lastpagebutton.isEnabled());
+		LogHelper.info("Is Selected: " + lastpagebutton.isSelected());
+
+		WebDriverWaitUtility.clickElementUsingAction(driver, lastpagebutton);
+		lastpagebutton.click();
+	}
+
+	public void clickFirstPage() {
+		WebElement firstpagebutton = driver.findElement(By.xpath("//button[contains(@class, 'p-paginator-first')]"));
+		LogHelper.info("Is Displayed: " + firstpagebutton.isDisplayed());
+		LogHelper.info("Is Enabled: " + firstpagebutton.isEnabled());
+		LogHelper.info("Is Selected: " + firstpagebutton.isSelected());
+
+		WebDriverWaitUtility.clickElementUsingAction(driver, firstpagebutton);
+		//firstpagebutton.click();
+	}
+	
+	public String enterBatchNameInSearchTextBox() {
+		// Locate the first batch name from the table
+		firstBatchNameElement = WebDriverWaitUtility.waitForElementToBeVisible(firstBatchNameElement);
+		String batchName = firstBatchNameElement.getText();
+		LogHelper.info("Batch Name: " + batchName);
+
+		// Enter the batch name into the search box
+		searchBox = WebDriverWaitUtility.waitForElementToBeClickable(searchBox);
+		searchBox.clear();
+		Actions actions = new Actions(driver);
+		actions.moveToElement(searchBox).click().sendKeys(batchName).pause(1000).build().perform();
+
+		return batchName;
+	}
+
+	public String enterClassNameInSearchTextBox() {
+		// Locate the first class name from the table
+		firstClassNameElement = WebDriverWaitUtility.waitForElementToBeVisible(firstClassNameElement);
+		String className = firstClassNameElement.getText();
+		LogHelper.info("Class Name: " + className);
+
+		// Enter the class name into the search box
+		searchBox = WebDriverWaitUtility.waitForElementToBeClickable(searchBox);
+		searchBox.clear();
+		Actions actions = new Actions(driver);
+		actions.moveToElement(searchBox).click().sendKeys(className).pause(1000).build().perform();
+
+		return className;
+	}
+
+	public String enterStaffNameInSearchTextBox() {
+		// Locate the first staff name from the table
+		firstBatchNameElement = WebDriverWaitUtility.waitForElementToBeVisible(firstStaffNameElement);
+		String staffName = firstStaffNameElement.getText();
+		LogHelper.info("Staff Name: " + staffName);
+
+		// Enter the same staff name into the search box
+		searchBox = WebDriverWaitUtility.waitForElementToBeClickable(searchBox);
+		searchBox.clear();
+		Actions actions = new Actions(driver);
+		actions.moveToElement(searchBox).click().sendKeys(staffName).pause(1000).build().perform();
+
+		return staffName;
+	}
+
+	public List<String> getBatchNamesFromTable() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		List<WebElement> batchNameElements = wait
+				.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//tbody/tr/td[2]")));
+		List<String> batchNames = new ArrayList<>();
+
+		for (WebElement batchElement : batchNameElements) {
+			batchElement = WebDriverWaitUtility.waitForElementToBeVisible(batchElement);
+			batchNames.add(batchElement.getText().trim());
+		}
+		return batchNames;
+
+	}
+	
+	public List<String> getClassNamesFromTable() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		List<WebElement> classNameElements = wait
+				.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//tbody/tr/td[3]")));
+		List<String> classNames = new ArrayList<>();
+
+		for (WebElement classElement : classNameElements) {
+			classElement = WebDriverWaitUtility.waitForElementToBeVisible(classElement);
+			classNames.add(classElement.getText().trim());
+		}
+		return classNames;
+
+	}
+	
+	public List<String> getStaffNamesFromTable() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		List<WebElement> staffNameElements = wait
+				.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//tbody/tr/td[7]")));
+		List<String> staffNames = new ArrayList<>();
+
+		for (WebElement staffElement : staffNameElements) {
+			staffElement = WebDriverWaitUtility.waitForElementToBeVisible(staffElement);
+			staffNames.add(staffElement.getText().trim());
+		}
+		return staffNames;
+
+	}
 }
