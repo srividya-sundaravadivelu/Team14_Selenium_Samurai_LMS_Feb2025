@@ -24,7 +24,7 @@ public class DataReader {
                 HashMap<String, String> currentHash = new HashMap<>();
                 if (currentRow == null) break;
                 for (int j = 0; j < HeaderRow.getPhysicalNumberOfCells(); j++) {
-                    LogHelper.info("Initializing row: " + j);
+                    //LogHelper.info("Initializing row: " + j);
                     Cell currentCell = currentRow.getCell(j);
                     String cellValue = ""; // Initialize to empty string
 
