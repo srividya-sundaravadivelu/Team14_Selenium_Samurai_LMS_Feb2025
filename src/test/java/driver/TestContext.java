@@ -45,6 +45,7 @@ public class TestContext {
 	private ClassSortPage classSortPage;
 	private ProgramSortPage programsortpage;
 	private ProgramSearchPage programsearchpage;
+	private ClassDeletePage classDeletePage;
 
 
 	public void setDriver(String browser) {
@@ -191,6 +192,11 @@ public class TestContext {
 		if (programsearchpage ==null)
 			programsearchpage = new ProgramSearchPage(driver);
 		return programsearchpage;
+	}
+	public ClassDeletePage getClassDeletePage() {
+		if (classDeletePage ==null)
+			classDeletePage = new ClassDeletePage(driver);
+		return classDeletePage;
 	}
 
 }
