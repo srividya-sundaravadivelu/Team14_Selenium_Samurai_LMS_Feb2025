@@ -38,7 +38,7 @@ Feature: Manage Program - Search Bar
     When Admin clicks Previous page link in program table
     Then Admin validates previous page record and pagination has previous page link in program
 
-  @programpagination-06
+  @programpagination-07
   Scenario: Verify Admin is able to click  First page link
     When Admin clicks First page link in program table
     Then Admin validates very first page record and Previous page link are disabled in program
