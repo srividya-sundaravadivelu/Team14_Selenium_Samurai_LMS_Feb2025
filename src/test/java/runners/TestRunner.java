@@ -18,10 +18,9 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 				"json:target/cucumber-reports/cucumber.json",
 				"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
 				"com.aventstack.chaintest.plugins.ChainTestCucumberListener:" }, // For reporting
-		monochrome = true // For better console output 		
-		, tags = "@login or @homePage or @logout or @programdelete or @programsort or @Batch or @addBatch" )
-
-
+		monochrome = true // For better console output 
+		, tags = "@login or @homePage or @logout or @Batch or @addBatch or @program or @class "
+				+ "or @AddNewClass or @AddClassPopUp or @programdelete or @programsort or @programsearch" )
 
 
 public class TestRunner extends AbstractTestNGCucumberTests {
