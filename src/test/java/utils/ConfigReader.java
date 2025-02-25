@@ -54,7 +54,9 @@ public class ConfigReader {
 	public static String getProgramUrl() {
 		return properties.getProperty("program.url");
 	}
-	
+	public static String getBatchUrl() {
+		return properties.getProperty("batch.url");
+	}
 	public static boolean isChromeHeadless() {
 		return Boolean.parseBoolean(properties.getProperty("browser.chrome.headless", "false"));
 	}
