@@ -2,12 +2,19 @@ package pageObjects;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
 
+import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+
+
+import io.cucumber.java.en.Then;
 
 public class BatchPage extends BasePage {
 	 
@@ -17,21 +24,6 @@ public class BatchPage extends BasePage {
 	}
 	
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	
-//	@FindBy(id = "username")
-//	public WebElement userNameInput;
-//
-//	@FindBy(id = "password")
-//	public WebElement passwordInput;
-//
-//	@FindBy(xpath = "//*[@id=\"mat-select-value-1\"]/span")
-//	public WebElement role;
-//
-//	@FindBy(xpath = "//mat-option[span[text()[contains(.,'Admin')]]]")
-//	public WebElement adminRole;
-//
-//	@FindBy(id = "login")
-//	public WebElement login;
 	
 	@FindBy(xpath="//button[contains(@class,'mat-button')]/span[text()='Batch']")
 	private WebElement BatchButton;
@@ -59,7 +51,159 @@ public class BatchPage extends BasePage {
 	@FindBy(xpath="//i[@class='p-sortable-column-icon pi pi-fw pi-sort-alt']")
 	private List<WebElement>isSortingEnable;
 	//.............Add New Batch
+	@FindBy(xpath="//button[@role='menuitem' and contains(text(),'Add New Batch')]")
+	private WebElement AddBatch;
+	@FindBy(xpath="//div[contains(@class, 'p-dropdown')]")
+	private WebElement DropDownProgramDis;
+	@FindBy(xpath="//span[contains(@class,'p-dropdown-trigger')]")
+	private List< WebElement> SelectFromDropDown;
+	@FindBy(id="batchProg")
+	private WebElement PreBatchName;
+	@FindBy(id="batchName")
+	private WebElement BatchName;
+	@FindBy(id="batchDescription")
+	private WebElement BatchDes;
+	@FindBy(xpath="//div[@class='p-radiobutton-box']")
+	private List<WebElement> radioButtons;
+	@FindBy(id="batchNoOfClasses")
+	private WebElement NoOfClasses;
+	@FindBy(id="text-danger")
+	private WebElement ErrorMsg;
+	@FindBy(xpath="(//span[@class='p-radiobutton-icon'])[1]")
+	private WebElement ActiveBtn;
+	@FindBy(xpath="//span[text()='Save']")
+	private WebElement SaveBtn;
+	@FindBy(xpath="//*[@role='alert']//div[contains(text(),'Successful')]")
+	private WebElement MsgDisplay;
 	
+	public boolean isSuccessMessageDisplayed() {
+		return MsgDisplay.isDisplayed();
+	}
+//	public String MsgDisplayed() {
+//		String Msg = "Successful";
+//		return Msg;
+//	}
+//	 
+	
+	public void mandatoryDataEntry() {
+		
+		selectProgramFromDropdown();
+		// wait.until(ExpectedConditions.invisibilityOfAllElements(SelectFromDropDown)); 
+		
+		wait.until(ExpectedConditions.elementToBeClickable(BatchName));
+
+		BatchName.sendKeys("12");
+
+		wait.until(ExpectedConditions.elementToBeClickable(NoOfClasses)); 
+		NoOfClasses.sendKeys("5"); 
+		wait.until(ExpectedConditions.visibilityOf(ActiveBtn));
+
+		wait.until(ExpectedConditions.elementToBeClickable(ActiveBtn)).click();
+
+		wait.until(ExpectedConditions.elementToBeClickable(BatchDes));
+		BatchDes.sendKeys("Hackathoan");
+	}
+	
+	public void clickSaveBtn() {
+		SaveBtn.click();
+	}
+	public void enterTextInPreBatchName() {
+		PreBatchName.sendKeys("a");
+	
+	}
+	
+	public boolean isTextInPreBatchName() {
+		return PreBatchName.getAttribute("value").isEmpty();
+	}
+	
+	public boolean getErrorMsg() {
+		return ErrorMsg.isDisplayed();
+	}
+		
+	public String selectProgramFromDropdown() {
+		
+		   WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		   wait.until(ExpectedConditions.elementToBeClickable(DropDownProgramDis));
+	
+		    DropDownProgramDis.click(); // Open the dropdown
+		    wait.until(ExpectedConditions.visibilityOfAllElements(SelectFromDropDown)); // Wait for options to load
+		    System.out.println("Options are now visible. Attempting to click the first option...");
+		    WebElement firstOption = SelectFromDropDown.get(0); 		    // Get the first option
+		    
+		    System.out.println("First option text: " + firstOption.getText());
+		    wait.until(ExpectedConditions.elementToBeClickable(firstOption)).click();
+//		    JavascriptExecutor js = (JavascriptExecutor) driver;
+//		    js.executeScript("arguments[0].click();", firstOption);
+
+		     //firstOption.click(); // Click the first option
+		    String text = firstOption.getText(); // Get the selected text
+		    
+		    return text; // Return the selected text
+		}
+
+	public String getBatchName() {
+		String text= PreBatchName.getText();
+		return text;
+	}
+	
+	public void enterTextInBatchName() {
+		wait.until(ExpectedConditions.elementToBeClickable(BatchName));
+		BatchName.click();
+		BatchName.sendKeys("a");
+	}
+		
+	public boolean checkElementEnable() {
+		if(!DropDownProgramDis.isEnabled()) {
+			System.out.println("DropDown");
+			return false;
+		}
+		if(!PreBatchName.isEnabled()) {
+			System.out.println("Prebatch");
+			return false;
+		}
+		if(!BatchName.isEnabled()) {
+			System.out.println("batch");
+			return false;
+		}
+		if(!BatchDes.isEnabled()) {
+			System.out.println("batchdes");
+			return false;
+		}
+		if(radioButtons.isEmpty() || !radioButtons.get(0).isEnabled() || !radioButtons.get(1).isEnabled()) {
+			System.out.println("radio");
+			return false;
+		}
+		if(!NoOfClasses.isEnabled()) {
+			System.out.println("classes");
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean checkElementTypes() {
+		if(!DropDownProgramDis.getAttribute("class").contains("p-dropdown")) {
+			return false;
+		}
+		if(!PreBatchName.getAttribute("type").contains("text")) {
+			return false;
+		}
+		if(!BatchName.getAttribute("type").contains("text")) {
+			return false;
+		}
+		if(!BatchDes.getAttribute("type").contains("text")) {
+			return false;
+		}
+		if(!NoOfClasses.getAttribute("type").contains("number")) {
+			return false;
+		}
+		return true;
+	}
+	
+	public void addBatchBtn() {
+		//driver.navigate().refresh();
+		wait.until(ExpectedConditions.elementToBeClickable(AddBatch));
+		AddBatch.click();
+	}
 	
 	public String getBatchPageUrl() {
 		String CurrentUrl=driver.getCurrentUrl();
