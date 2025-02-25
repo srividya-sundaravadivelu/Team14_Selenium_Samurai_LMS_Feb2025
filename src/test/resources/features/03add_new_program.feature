@@ -26,7 +26,7 @@ Then Admin should see window title as "Program Details"
 Scenario: Verify mandatory fields with red asterisk mark 
 Given Admin is on Program page
 When Admin clicks on "Add  New Program" under the "Program" menu bar
-Then Admin should see red  asterisk mark  beside mandatory field "Name"
+Then Admin should see red asterisk mark beside mandatory field "Name"
 
 
 @ProgramPageMenuBar_AddNewProgram @ProgramTC_009

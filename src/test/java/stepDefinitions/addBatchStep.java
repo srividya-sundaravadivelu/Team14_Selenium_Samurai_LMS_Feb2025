@@ -19,7 +19,7 @@ public class addBatchStep  {
 	LoginPage loginPage;
 	BatchPage batchPage;
 	addBatchPage addbatchPage;
-	 String batchname ="Basic";
+	 
 	
 	public addBatchStep (TestContext testContext) {
 		this.testContext = testContext;
@@ -178,16 +178,18 @@ public class addBatchStep  {
 	public void admin_should_see_the_very_first_page_on_the_data_table() {
 		Assert.assertTrue(!addbatchPage.isFirstButtonEnabled());
 	}
-//	@When("Admin enters the batch name in the search text box")
-//	public void admin_enters_the_batch_name_in_the_search_text_box() {
-//		addbatchPage.searchInBatchPage("Basic");
-//	}
-//	@Then("Admin should see the filtered batches in the data table")
-//	public void admin_should_see_the_filtered_batches_in_the_data_table() {
-//		 Assert.assertNotNull("Batch name should not be null", batchname); 
-//	     boolean isBatchDisplayed = addbatchPage.areBatchNameDisable();
-//	     Assert.assertTrue(isBatchDisplayed);
-//	}
+	@When("Admin enters the batch name {string} in the search text box") // make sure you change it to match the feature file
+	public void admin_enters_the_batch_name_in_the_search_text_box(String searchText) {
+		addbatchPage.enterSearchText(searchText);
+	}
+
+	@Then("Admin should see the filtered batches containing {string} in the data table")
+	public void admin_should_see_the_filtered_batches_in_the_data_table(String searchText) {
+		
+		    int count = addbatchPage.getMatchingRowsCount(searchText);
+		    Assert.assertTrue(count > 0);
+
+	}
 
 }
 	

@@ -23,12 +23,21 @@ public class TestContext {
 
 	private Program1Page programPage;
 	private ManageProgramPage manageProgramPage;
+
+	private EditProgramPage editProgramPage;
+
+
+
 	private ClassPage classPage;
 	private AddNewClassPage addNewClassPage;
 	private AddClassPopUp addClassPopUp;
 	private EditClassPage editClassPage;
 	private Actions actions;
 	private ProgramDeletePage programdeletepage;
+
+
+	
+
 	private BatchPage batchPage;
 	private addBatchPage addbatchPage;
 	private LogoutPage logoutpage;
@@ -132,6 +141,12 @@ public class TestContext {
 		if(manageProgramPage == null)
 			manageProgramPage = new ManageProgramPage(driver);
 		return manageProgramPage;
+	}
+	
+	public EditProgramPage getEditProgramPage() {
+		if(editProgramPage == null)
+			editProgramPage = new EditProgramPage(driver);
+		return editProgramPage;
 	}
 	
 	

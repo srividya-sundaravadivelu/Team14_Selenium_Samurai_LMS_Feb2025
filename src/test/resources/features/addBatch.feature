@@ -86,10 +86,10 @@ Feature: Add New Batch
    When Admin clicks first page link on the data table
    Then Admin should see the very first page on the data table
    
-   #Scenario:
-   #Given Admin is on the batch page
-   #When Admin enters the batch name in the search text box
-  #Then  Admin should see the filtered batches in the data table 
+   Scenario:
+   Given Admin is on the batch page
+   When Admin enters the batch name "Playwright" in the search text box
+  Then  Admin should see the filtered batches containing "Playwright" in the data table 
    
    
    

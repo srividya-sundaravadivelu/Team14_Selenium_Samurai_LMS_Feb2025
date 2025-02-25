@@ -20,7 +20,6 @@ public class addBatchPage extends BasePage{
 		super(driver);
 		
 	}
-	
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	
 	@FindBy(xpath="//button[text()='Add New Batch']")
@@ -57,7 +56,7 @@ public class addBatchPage extends BasePage{
 	private WebElement ActiveBtn;
 	@FindBy(xpath="//div[@role='dialog']")
 	private WebElement batchDetailPopUp;
-	//delete page
+	//delete page.................................................................
 	@FindBy(xpath="//div[@class='action']//span/button[contains(@class, 'p-button-danger')]")
 	private List<WebElement> DeleteBtn;
 	@FindBy(xpath="//span[contains(text(),'Are you sure you want to delete')]")
@@ -76,6 +75,22 @@ public class addBatchPage extends BasePage{
 	private WebElement DeleteBox;
 	@FindBy(xpath="//span[text()='Yes']")
 	private WebElement YesDeleteCheckBoxBtn;
+	//Search......................................................
+	
+	@FindBy(id="filterGlobal")
+	private WebElement SearchBox;
+	
+	
+	public void enterSearchText(String searchText) {
+		SearchBox.clear();
+		SearchBox.sendKeys(searchText);
+		SearchBox.sendKeys(Keys.ENTER);
+	}
+	
+	public int getMatchingRowsCount(String searchText) {
+		List<WebElement> batches = driver.findElements(By.xpath("//tbody/tr[./td[contains(text(), '" + searchText + "')]]"));
+		return batches.size();
+	}
 	
 		
 //......................................................................................
@@ -110,33 +125,7 @@ public class addBatchPage extends BasePage{
 	
 	@FindBy(xpath="//span[@class='p-paginator-icon pi pi-angle-double-left']")
 	private WebElement FirstPageLink;
-	//Search....................................
-	@FindBy(xpath="//input[@id='filterGlobal']")
-	private WebElement SearchButton;
-	 
-	//Locator for entire table
-	@FindBy(xpath = "//p-table//table/tbody/tr")
-	 private List<WebElement> rows;
-	
-	 public void searchInBatchPage(String batchname) {
-		 Actions actions = new Actions(driver);
-	        actions.doubleClick(SearchButton).perform(); // Double-click to activate search
-	        SearchButton.clear();                        // Clear any existing text in the search box
-	        SearchButton.sendKeys(batchname);            // Type in the batch name
-	        SearchButton.sendKeys(Keys.RETURN);          // Hit Enter to initiate search
-	    }
-	 
-	 // Method to get all displayed rows in the table
-	    public List<WebElement> getDisplayedRows() {
-	        return rows; // Returns the currently displayed rows
-	    }
-
-	    // Method to check if a batch with the given name is displayed
-	    public boolean isBatchDisplayed(String batchname) {
-	        return rows.stream().anyMatch(row -> row.getText().equalsIgnoreCase(batchname));
-	    }
-	
-	
+		
 	public void doublePreviousPageButton() {
 		clickButton(doublePreviousPageLink);
 	}

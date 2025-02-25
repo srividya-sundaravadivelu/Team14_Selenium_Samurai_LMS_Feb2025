@@ -45,11 +45,12 @@ public class Program_AddNewProgramSteps {
 			Assert.assertEquals(actualTitle, expectedTitle);
 		}
 		//**********Scenario 8********
-		@Then("Admin should see red  asterisk mark  beside mandatory field {string}")
+		@Then("Admin should see red asterisk mark beside mandatory field {string}")
 		public void admin_should_see_red_asterisk_mark_beside_mandatory_field(String string) {
 			Assert.assertTrue(addNewProgramPage.admin_should_see_red_asterisk_mark_beside_mandatory_field());
-		  
+		    
 		}
+		
 		//**********Scenario 9********
 		@Given("Admin is on Program details form")
 		public void admin_is_on_program_details_form() {		
