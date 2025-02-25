@@ -23,7 +23,9 @@ public class TestContext {
 
 	private Program1Page programPage;
 	private ManageProgramPage manageProgramPage;
+
 	private EditProgramPage editProgramPage;
+
 
 
 	private ClassPage classPage;
@@ -33,11 +35,17 @@ public class TestContext {
 	private Actions actions;
 	private ProgramDeletePage programdeletepage;
 
+
 	
+
 	private BatchPage batchPage;
 	private addBatchPage addbatchPage;
 	private LogoutPage logoutpage;
 	private HomePage homePage;
+	private ClassSortPage classSortPage;
+	private ProgramSortPage programsortpage;
+	private ProgramSearchPage programsearchpage;
+
 
 	public void setDriver(String browser) {
 		LogHelper.info("Browser value inside SetDriver method in TestContext:" + browser);
@@ -104,7 +112,12 @@ public class TestContext {
 			addNewClassPage = new AddNewClassPage(driver);
 		return addNewClassPage;
 	}
-
+	public ClassSortPage getClassSortPage() {
+		if (classSortPage == null)
+			classSortPage = new ClassSortPage(driver);
+		return classSortPage;
+	}
+	
 	public AddClassPopUp getAddClassPopUp() {
 		if (addClassPopUp == null)
 			addClassPopUp = new AddClassPopUp(driver);
@@ -158,18 +171,26 @@ public class TestContext {
 			programdeletepage = new ProgramDeletePage(driver);
 		return programdeletepage;
 	}
-
 	public HomePage getHomePage() {
 		if (homePage == null)
 			homePage = new HomePage(driver);
 		return homePage;
-
 	}
 
 	public LogoutPage getLogoutpage() {
 		if (logoutpage == null)
 			logoutpage = new LogoutPage(driver);
 		return logoutpage;
+	}
+	public ProgramSortPage getProgramSortPage() {
+		if (programsortpage ==null)
+			programsortpage = new ProgramSortPage(driver);
+		return programsortpage;
+	}
+	public ProgramSearchPage getProgramSearchPage() {
+		if (programsearchpage ==null)
+			programsearchpage = new ProgramSearchPage(driver);
+		return programsearchpage;
 	}
 
 }

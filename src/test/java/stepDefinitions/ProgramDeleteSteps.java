@@ -27,17 +27,14 @@ public class ProgramDeleteSteps {
 
 	@When("Admin clicks on delete button on program page")
 	public void admin_clicks_on_delete_button_on_program_page() {
-		programdeletepage.ClickOnDeleteBtn();
-	    
+		programdeletepage.ClickOnDeleteBtn();	    
 	}
 
 	@Then("Admin will get confirm deletion {string} in program page")
-	public void admin_will_get_confirm_deletion_in_program_page(String string) {
-		
+	public void admin_will_get_confirm_deletion_in_program_page(String string) {		
 		String actualText = programdeletepage.getText(); 
 	    System.out.println("Actual Text: " + actualText); 
-	    Assert.assertNotNull(actualText);
-	    
+	    Assert.assertNotNull(actualText);	    
 	}
 
 	@Given("Admin is on Confirm deletion form of program page")
@@ -49,17 +46,13 @@ public class ProgramDeleteSteps {
 	public void admin_clicks_on_yes_button_for_a_program_page() {
 		programdeletepage.ClickYesDelete();
 	}
-
 	
 	@Then("Admin can see Successful Program Deleted message in program page")
 	public void admin_can_see_successful_program_deleted_message_in_program_page() {
-		System.out.println("staring --- Admin can see Successful Program Deleted message in program page");
-		String actualMessage = programdeletepage.getSuccessMsg();		
-		String[] words = actualMessage.split("\\s+");
-		System.out.println("the problem area" + words[0]+" "+words[1]+" "+words[2]);
-		String newactualMessage= words[0]+" "+words[1]+" "+words[2];
-		System.out.println(words[0]);
 		
+		String actualMessage = programdeletepage.getSuccessMsg();		
+		String[] words = actualMessage.split("\\s+");		
+		String newactualMessage= words[0]+" "+words[1]+" "+words[2];			
 	    String expectedMessage = "Successful Program Deleted";
 	    	System.out.println(newactualMessage.equalsIgnoreCase(expectedMessage)); 	
 	   	   Assert.assertEquals(expectedMessage, newactualMessage);
@@ -90,7 +83,6 @@ public class ProgramDeleteSteps {
 	    Assert.assertNotNull(actualText);
 	}
 
-
 	@When("Admin clicks on Yes button for multiple delete of program page")
 	public void admin_clicks_on_yes_button_for_multiple_delete_of_program_page() {
 		programdeletepage.MultipleDeleteProg();
@@ -98,14 +90,11 @@ public class ProgramDeleteSteps {
 	@Then("Admin can see Successful Program Deleted message in program page for multiple")
 	public void admin_can_see_successful_program_deleted_message_in_program_page_for_multiple() {
 		String actualMessage = programdeletepage.multiGetSuccessMsg(); 
-		String[] words = actualMessage.split("\\s+");
-		System.out.println("the problem area" + words[0]);
-		String newactualMessage= words[0];
-		System.out.println(words[0]);
-		
-	    String expectedMessage = "Successful";
+		String[] words = actualMessage.split("\\s+");		
+		String newactualMessage= words[0];	
+		String expectedMessage = "Successful";
 	    	System.out.println(newactualMessage.equalsIgnoreCase(expectedMessage)); 	
-	   	   Assert.assertEquals(expectedMessage, newactualMessage);
+	   	  Assert.assertEquals(expectedMessage, newactualMessage);
 	}
 
 	@When("Admin Click on X button for delete of program page")
@@ -121,7 +110,6 @@ public class ProgramDeleteSteps {
 	    System.out.println("Actual Page Title: " + actualTitle); 
 	    Assert.assertEquals("LMS", actualTitle);
 	}
-
 
 
 }

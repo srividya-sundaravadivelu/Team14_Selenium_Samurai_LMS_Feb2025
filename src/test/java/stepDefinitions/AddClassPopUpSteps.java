@@ -27,6 +27,11 @@ public class AddClassPopUpSteps {
 	List<HashMap<String, String>> datamap; // Data driven
 	String classCreatedMessage;
 
+	public void dataInitialization() {
+        if (datamap == null) {
+            datamap = DataReader.data(System.getProperty("user.dir") + "\\testData\\ExcelData.xlsx", "ClassPage");
+        }
+    }
 	public AddClassPopUpSteps(TestContext testContext) {
 		this.testContext = testContext;
 		this.addNewClassPage = testContext.getAddNewClassPage();
@@ -40,14 +45,17 @@ public class AddClassPopUpSteps {
 
 	@When("Admin enters mandatory fields in the form from excel row {string} and clicks on save button")
 	public void admin_enters_mandatory_fields_in_the_form_from_excel_row_and_clicks_on_save_button(String rows) throws InterruptedException {
+		
 		LogHelper.info("entering new class details");
-		datamap = DataReader.data(System.getProperty("user.dir") + "\\testData\\ExcelData.xlsx", "ClassPage");
+		dataInitialization();
+		//datamap = DataReader.data(System.getProperty("user.dir") + "\\testData\\ExcelData.xlsx", "ClassPage");
 		LogHelper.info("user fills data from excel");
 		int index = Integer.parseInt(rows) - 1;
 		HashMap<String,String> classDetails = datamap.get(index);
 		//classCreatedMessage = addClassPopUp.addingMandatoryFields(classDetails);
-		
+		System.out.println(classDetails.get("ClassDescription"));
 		classCreatedMessage = addClassPopUp.addingMandatoryFields(classDetails);
+		//Thread.sleep(1000);
 		//classCreatedMessage = addClassPopUp.getClassCreatedMessage();
 	}
 

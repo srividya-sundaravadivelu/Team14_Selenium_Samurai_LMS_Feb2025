@@ -1,4 +1,4 @@
-@tag
+@programdelete
 Feature: Manage Program - Delete Program
 
   Background: 

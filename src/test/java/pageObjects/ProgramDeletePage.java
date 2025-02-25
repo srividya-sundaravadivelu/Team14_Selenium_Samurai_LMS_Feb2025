@@ -1,23 +1,17 @@
 package pageObjects;
 
 import java.time.Duration;
-import java.util.concurrent.TimeoutException;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import utils.WebDriverWaitUtility;
 
 public class ProgramDeletePage extends BasePage {
 	private Actions actions;
-   
-   
+      
 	public ProgramDeletePage(WebDriver driver) {
 		super(driver);
 		this.actions = new Actions(driver);		 		
@@ -42,10 +36,9 @@ public class ProgramDeletePage extends BasePage {
 	 public void ClickOnProgram() { 
 		 
 		    WebElement programTabElement = WebDriverWaitUtility.waitForElementToBeClickable(programTab);  		   
-		    actions.doubleClick(programTabElement).perform();
-		    System.out.println("Clicked on Program tab.");
+		    actions.doubleClick(programTabElement).perform();		    
 		    String pageTitle = driver.getTitle();
-		    System.out.println("Page title after clicking Program: " + pageTitle);
+		    
 		}
 	 
 	 public void ClickOnDeleteBtn() {	
@@ -53,8 +46,7 @@ public class ProgramDeletePage extends BasePage {
 		 programDeleteElement.click();
 	 }
 	 public String getText() { 
-		    String text1 = confirmpopTxt.getText();
-		    System.out.println("Confirmation Popup Text: " + text1); 
+		    String text1 = confirmpopTxt.getText();		   
 		    return text1; 
 		} 	
 	 public void ClickNoDelete() {
@@ -71,7 +63,7 @@ public class ProgramDeletePage extends BasePage {
 
 	 }
 	 public String getSuccessMsg() {
-		 System.out.println("starting getSuccessMsg");
+		 
 		 WebElement successMessageElement = WebDriverWaitUtility.waitForElementToBeVisible(successdelete);
 		 new WebDriverWait(driver, Duration.ofSeconds(30))
 	        .until(ExpectedConditions.textToBePresentInElement(successdelete, "Successful"));		 
@@ -83,14 +75,13 @@ public class ProgramDeletePage extends BasePage {
 	 
 	 public String multiGetSuccessMsg() {
 	        try {
-	        	System.out.println("multiGetSuccessMsg getSuccessMsg");
+	        	
 	            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));	         
 	            System.out.println("before get web element");
-	            wait.until(ExpectedConditions.visibilityOf(dubsuccessdelete));       
-	            System.out.println("before retrun" + dubsuccessdelete.getText());
+	            wait.until(ExpectedConditions.visibilityOf(dubsuccessdelete)); 	            
 	            return dubsuccessdelete.getText();
 	        } catch (Exception e) {
-	            System.out.println("Error in multiGetSuccessMsg(): " + e.getMessage());
+	           
 	            return "";
 	        }
 	 }

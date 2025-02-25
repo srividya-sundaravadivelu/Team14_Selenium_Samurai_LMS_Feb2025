@@ -97,4 +97,55 @@ public class ClassSteps {
 	public void admin_should_see_total_no_of_classes_in_below_of_the_data_table() {
 		Assert.assertTrue(classPage.isTotalClassesDisplayed());
 	}
+
+    @When("Admin clicks Next page link on the class table")
+    public void adminClicksNextPageLinkOnTheClassTable() throws InterruptedException {
+		Assert.assertTrue(classPage.clicknextpage());
+    }
+
+	@Then("Admin should see the next page record on the table with Pagination has previous active link enabled")
+	public void adminShouldSeeTheNextPageRecordOnTheTableWithPaginationHasNextActiveLinkEnabled() throws InterruptedException {
+
+		String text = classPage.getShowingResultsText();
+		LogHelper.info("Text found as : " + text);
+		Assert.assertTrue(text.contains("Showing 11 to "));
+	}
+
+	@When("Admin clicks Previous page link on the class table")
+	public void adminClicksPreviousPageLinkOnTheClassTable() throws InterruptedException {
+		Assert.assertTrue(classPage.clickPreviousPage());
+	}
+
+	private void validateShowingOne() throws InterruptedException {
+		String text = classPage.getShowingResultsText();
+		LogHelper.info("Text found as : " + text);
+		Assert.assertTrue(text.contains("Showing 1 to "));
+	}
+
+	@Then("Admin should see the previous page record on the table with Pagination has next active link enabled")
+	public void adminShouldSeeThePreviousPageRecordOnTheTableWithPaginationHasNextActiveLinkEnabled() throws InterruptedException {
+		validateShowingOne();
+	}
+
+	@When("Admin clicks Last page link on the class table")
+	public void adminClicksLastPageLinkOnTheClassTable() {
+		classPage.clickLastPage();
+	}
+
+	@Then("Admin should see the last page record on the table with Pagination has first active link enabled")
+	public void adminShouldSeeTheLastPageRecordOnTheTableWithPaginationHasFirstActiveLinkEnabled() throws InterruptedException {
+		String text = classPage.getShowingResultsText();
+		LogHelper.info("Text found as : " + text);
+		Assert.assertFalse(text.contains("Showing 1 to "));
+	}
+
+	@When("Admin clicks First page link on the class table")
+	public void adminClicksFirstPageLinkOnTheClassTable() {
+		classPage.clickFirstPage();
+	}
+
+	@Then("Admin should see the first page record on the table with Pagination has last active link enabled")
+	public void adminShouldSeeTheFirstPageRecordOnTheTableWithPaginationHasLastActiveLinkEnabled() throws InterruptedException {
+		validateShowingOne();
+	}
 }
