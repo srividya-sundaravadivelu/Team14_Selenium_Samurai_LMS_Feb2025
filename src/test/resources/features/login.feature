@@ -144,13 +144,13 @@ Feature: Login Page Verification
   @login-24
   Scenario: verify login button action through keyboard
     Given Admin is on login Page
-    When Admin enter valid data from excel row "1"
+    When Admin enter valid data only from excel row "1"
     When Admin clicks login button through keyboard
     Then Admin should land on home page
 
   @login-25
   Scenario: verify login button action through mouse
     Given Admin is on login Page
-    When Admin enter valid data from excel row "1"
+    When Admin enter valid data only from excel row "1"
     When Admin clicks login button through mouse
     Then Admin should land on home page

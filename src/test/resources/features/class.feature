@@ -54,3 +54,25 @@ Feature: Class Page Validation
     Given Admin is on the home Page for class
     When Admin clicks the Class Navigation bar in the Header
     Then Admin should see Total no of classes in below of the data table.
+
+  Scenario: Verify Next page link(>)
+    Given Admin clicks the Class Navigation bar in the Header
+    When Admin clicks Next page link on the class table
+    Then Admin should see the next page record on the table with Pagination has previous active link enabled
+
+  Scenario: Verify Previous page link(>)
+    Given Admin clicks the Class Navigation bar in the Header
+    When Admin clicks Next page link on the class table
+    When Admin clicks Previous page link on the class table
+    Then Admin should see the previous page record on the table with Pagination has next active link enabled
+
+  Scenario: Verify Last page link(>)
+    Given Admin clicks the Class Navigation bar in the Header
+    When Admin clicks Last page link on the class table
+    Then Admin should see the last page record on the table with Pagination has first active link enabled
+
+  Scenario: Verify First page link(>)
+    Given Admin clicks the Class Navigation bar in the Header
+    When Admin clicks Last page link on the class table
+    When Admin clicks First page link on the class table
+    Then Admin should see the first page record on the table with Pagination has last active link enabled

@@ -22,8 +22,9 @@ public class DataReader {
             for (int i = 1; i < sheet.getPhysicalNumberOfRows(); i++) {
                 Row currentRow = sheet.getRow(i);
                 HashMap<String, String> currentHash = new HashMap<>();
-
+                if (currentRow == null) break;
                 for (int j = 0; j < HeaderRow.getPhysicalNumberOfCells(); j++) {
+                    LogHelper.info("Initializing row: " + j);
                     Cell currentCell = currentRow.getCell(j);
                     String cellValue = ""; // Initialize to empty string
 

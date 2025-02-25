@@ -76,47 +76,29 @@ public class LoginSteps {
         LogHelper.info(loginPage.getCurrentUrl());
     }
 
-	@When("Admin enter valid data from excel row {string}")
-	public void admin_enter_valid_data_from_excel_row(String rows) throws InterruptedException {
-	
-		
-		LogHelper.info("entering username and password");
+    // Created this common method to enter data in login screen, without clicking login.
+    public void admin_enter_data(String rows) {
+        dataInitialization();
+        LogHelper.info("user fills data from excel");
+        int index = Integer.parseInt(rows) - 1;
 
-		dataInitialization();
-		LogHelper.info("user fills data from excel");
-		int index = Integer.parseInt(rows) - 1;
-
-		loginPage.enterUsername(datamap.get(index).get("Username"));
+        loginPage.enterUsername(datamap.get(index).get("Username"));
         loginPage.enterPassword(datamap.get(index).get("Password"));
         loginPage.selectRole("Admin");
+    }
+
+	@When("Admin enter valid data from excel row {string}")
+	public void admin_enter_valid_data_from_excel_row(String rows) throws InterruptedException {
+		LogHelper.info("entering username and password");
+        admin_enter_data(rows);
         loginPage.clickLogin();
         Thread.sleep(1000);
 	}
-	
-	
-	
-//    @When("Admin enter data from excel row {string}")
-//    public void admin_enter_data_from_excel_row(String rows) throws InterruptedException {
-//        LogHelper.info("entering username and password");
-//        dataInitialization();
-//        LogHelper.info("user fills data from excel");
-//        int index = Integer.parseInt(rows) - 1;
-//
-//        // Get action for browser elements, to perform action on them
-//        Actions action = new Actions(testContext.getdriver());
-//
-//        // Type username
-//        action.moveToElement(loginPage.userNameInput).click().sendKeys(datamap.get(index).get("Username")).build().perform();
-//        // Type password
-//        action.moveToElement(loginPage.passwordInput).click().sendKeys(datamap.get(index).get("Password")).build().perform();
-//        // Select role
-//
-//        action.moveToElement(loginPage.role).click().build().perform();
-//
-//        testContext.getdriver().findElement(By.xpath("//mat-option[span[text()[contains(.,'Admin')]]]")).click();
-//
-//        loginPage.clickLogin();
-//    }
+
+    @When("Admin enter valid data only from excel row {string}")
+    public void admin_enter_valid_data_only_from_excel_row(String rows) throws InterruptedException {
+        admin_enter_data(rows);
+    }
 
     @Then("Admin should receive application error") // invalid URL
     public void admin_should_receive_application_error() {
