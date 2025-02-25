@@ -19,7 +19,7 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 				"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
 				"com.aventstack.chaintest.plugins.ChainTestCucumberListener:" }, // For reporting
 		monochrome = true // For better console output 
-		, tags = "@login or @homePage or @logout or @Batch or @addBatch or @program or @class or @AddNewClass or @AddClassPopUp" )
+		, tags = "@login or @homePage or @logout or @Batch or @addBatch or @program or @class or @AddNewClass or @AddClassPopUp or @searchClass")
 
 public class TestRunner extends AbstractTestNGCucumberTests {
 	
