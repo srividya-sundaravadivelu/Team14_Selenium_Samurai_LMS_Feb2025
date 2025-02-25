@@ -4,6 +4,8 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,8 +26,16 @@ public class ClassPage extends BasePage {
 	}
 	// WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
+	@FindBy(xpath = "//span[normalize-space()='Home']")
+	private WebElement homeBtn;
 	@FindBy(xpath = "//span[normalize-space()='Class']")
 	private WebElement classBtn;
+	@FindBy(xpath = ("//span[normalize-space()='Batch']"))
+	WebElement batchBtn;
+	@FindBy(xpath = ("//span[normalize-space()='Program']"))
+	WebElement programBtn;
+	@FindBy(xpath = ("//button[@id='logout']"))
+	WebElement logout;
 	@FindBy(xpath = "//span[text()=' LMS - Learning Management System ']")
 	private WebElement pageTitile;
 	@FindBy(xpath = "//div[normalize-space()='Manage Class']")
@@ -49,6 +59,7 @@ public class ClassPage extends BasePage {
 
 	@FindBy(xpath = "//button[@class='p-button-danger p-button p-component p-button-icon-only']")
 	private WebElement deleteAll;
+
 	
 	@FindBy(xpath = "/html/body/app-root/app-session/div/mat-card/mat-card-content/p-table/div/p-paginator/div/span[1]")
 	private WebElement showingResults;
@@ -62,10 +73,50 @@ public class ClassPage extends BasePage {
 	@FindBy(xpath = "//tbody/tr[1]/td[7]")
 	private WebElement firstStaffNameElement;
 
+
 	public void clickBtnClass() {
 		WebElement btnClass = WebDriverWaitUtility.waitForElementToBeClickable(classBtn);
-		//return editBtnList;
-				btnClass.click();
+		// return editBtnList;
+		try {
+			btnClass.click();
+		} catch (Exception e) {
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", btnClass);
+		}
+	}
+
+	public void clickProgramButton() {
+		try {
+			programBtn.click();
+		} catch (Exception e) {
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", programBtn);
+		}
+	}
+
+	public void clickBatchButton() {
+		//batchBtn.click();
+		try {
+			batchBtn.click();
+		} catch (Exception e) {
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", batchBtn);
+		}
+	}
+
+	public void clickHomeButton() {
+		//homeBtn.click();
+		try {
+			homeBtn.click();
+		} catch (Exception e) {
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", homeBtn);
+		}
+	}
+
+	public void clickLogoutButton() {
+		//logout.click();
+		try {
+			logout.click();
+		} catch (Exception e) {
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", logout);
+		}
 	}
 
 	public String getPageTitle() {

@@ -21,12 +21,14 @@ public class AddNewClassSteps {
 
 	TestContext testContext;
 	LoginPage loginPage;
+	ClassPage classPage;
 	AddNewClassPage addNewClassPage;
 	List<HashMap<String, String>> datamap; // Data driven
 
 	public AddNewClassSteps(TestContext testContext) {
 		this.testContext = testContext;
 		this.loginPage = testContext.getLoginPage();
+		this.classPage = testContext.getClassPage();
 		this.addNewClassPage = testContext.getAddNewClassPage();
 	}
 	@Given("Admin is on the Manage class page")
@@ -34,7 +36,57 @@ public class AddNewClassSteps {
 		LogHelper.info("Admin is on the Manage class page");
 		Assert.assertEquals(addNewClassPage.getCurrentUrl(), ConfigReader.getManageClassUrl());
 	}
+///////////////////////// Navigation ////////////////////////////////////////////
+	
 
+@When("Admin clicks on Class link on Manage Class page")
+public void admin_clicks_on_class_link_on_manage_class_page() {
+	classPage.clickBtnClass();
+}
+
+@Then("Admin is redirected to class page")
+public void admin_is_redirected_to_class_page() {
+	Assert.assertEquals(classPage.getCurrentUrl(), ConfigReader.getManageClassUrl());
+}
+@When("Admin clicks on Program link on Manage Class page")
+public void admin_clicks_on_program_link_on_manage_class_page() {
+	classPage.clickProgramButton();
+}
+
+@Then("Admin is redirected to program page from class page")
+public void admin_is_redirected_to_program_page() {
+	Assert.assertEquals(classPage.getCurrentUrl(), ConfigReader.getProgramUrl());
+    
+}
+@When("Admin clicks on Batch link on Manage Class page")
+public void admin_clicks_on_batch_link_on_manage_class_page() {
+	classPage.clickBatchButton();
+}
+
+@Then("Admin is redirected to batch page from class page")
+public void admin_is_redirected_to_batch_page_from_class_page() {
+	Assert.assertEquals(classPage.getCurrentUrl(), ConfigReader.getBatchUrl());
+}
+@When("Admin clicks on Home link on Manage Class page")
+public void admin_clicks_on_home_link_on_manage_class_page() {
+	classPage.clickHomeButton();
+}
+
+@Then("Admin is redirected to home page from class page")
+public void admin_is_redirected_to_home_page_from_class_page() {
+	Assert.assertEquals(classPage.getCurrentUrl(), ConfigReader.getHomeUrl());
+}	
+@When("Admin clicks on Logout link on Manage Class page")
+public void admin_clicks_on_logout_link_on_manage_class_page() {
+   classPage.clickLogoutButton();
+}
+
+@Then("Admin is redirected to login page from class page")
+public void admin_is_redirected_to_login_page_from_class_page() {
+	Assert.assertEquals(classPage.getCurrentUrl(), ConfigReader.getLoginUrl());
+}
+
+/////////////////////////////////////////////////////////////////////////////////
 	@When("Admin clicks a add new class under the class menu bar")
 	public void admin_clicks_a_add_new_class_under_the_class_menu_bar() {
 	   addNewClassPage.addNewClassClick();
